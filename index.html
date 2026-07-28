@@ -557,12 +557,13 @@
     display: flex;
     gap: 16px;
     align-items: center;
-    transition: transform 0.15s, box-shadow 0.15s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
   .featured-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(17, 20, 36, 0.05);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+    border-color: var(--purple-border);
   }
 
   .featured-card img {
@@ -665,7 +666,7 @@
   .deal-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    gap: 32px;
   }
 
   .deal-card {
@@ -675,14 +676,14 @@
     background: var(--paper);
     display: flex;
     flex-direction: column;
-    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
-    box-shadow: 0 4px 15px rgba(17, 20, 36, 0.02);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0 4px 20px rgba(17, 20, 36, 0.03);
   }
 
   .deal-card:hover {
-    border-color: var(--purple-border);
-    box-shadow: 0 12px 30px rgba(17, 20, 36, 0.08);
-    transform: translateY(-4px);
+    border-color: var(--purple);
+    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.08);
+    transform: translateY(-6px);
   }
 
   .deal-img-wrapper {
@@ -1259,7 +1260,7 @@
     <div>
       <span class="eyebrow">● Strictly Vetted Digital Products</span>
       <h1>Skip the trial and error.<br>We test the <span class="accent">AI tools</span> first.</h1>
-      <p class="sub">Every course, tool, and digital guidebook featured on our hub is thoroughly researched and checked for what it actually delivers. Instant access, direct secure downloads, zero hype.</p>
+      <p class="sub">Stop guessing what works. Every single course, AI software, and digital workbook featured on our hub has been thoroughly purchased, opened, and tested for real-world utility by affiliate experts. Skip the marketing hype with honest, independent curation.</p>
       <div class="hero-cta">
         <a href="#products" class="btn-primary">Browse top picks →</a>
         <a href="#reviews" class="btn-secondary">Read expert reviews</a>
