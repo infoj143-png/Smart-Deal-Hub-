@@ -18,95 +18,471 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --ink:#1A1D29;
-    --ink-soft:#5B6072;
-    --paper:#FFFFFF;
-    --panel:#F5F6F8;
-    --line:#E7E9EE;
-    --blue:#2554F0;
-    --blue-dark:#173BAE;
-    --green:#16A34A;
-    --amber:#F5A623;
-    --purple:#7C3AED;
-    --radius:12px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;}
-  h1,h2,h3,.brand{font-family:'Sora',sans-serif;}
-  .mono{font-family:'IBM Plex Mono',monospace;}
-  a{text-decoration:none;color:inherit;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
-  button, input{font-family:inherit;}
-  a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  :root {
+    --ink: #111424;
+    --ink-soft: #4F5473;
+    --paper: #FFFFFF;
+    --panel: #F8F9FC;
+    --line: #E2E5F1;
+    --blue: #2554F0;
+    --blue-dark: #1233A5;
+    --green: #10B981;
+    --amber: #F59E0B;
+    --purple: #7C3AED;
+    --purple-light: #F3EEFF;
+    --purple-border: #DDD0FA;
+    --radius: 12px;
   }
 
-  .utility-bar{background:var(--ink); color:#fff; font-size:12.5px;}
-  .utility-bar .wrap{display:flex; justify-content:space-between; align-items:center; padding:8px 24px;}
-  .utility-bar span{opacity:0.85;}
-
-  header.nav{border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--paper); z-index:50;}
-  .nav-inner{display:flex; align-items:center; gap:28px; padding:16px 24px;}
-  .brand{font-weight:800; font-size:22px; letter-spacing:-0.02em; display:flex; align-items:center; gap:8px; white-space:nowrap;}
-  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--purple);display:inline-block;}
-  .search-box{flex:1; display:flex; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 14px; gap:10px; max-width:520px;}
-  .search-box input{border:none;background:transparent;outline:none;width:100%;font-size:14px;color:var(--ink);font-family:'Inter',sans-serif;}
-  .nav-links{display:flex; gap:22px; align-items:center; font-size:14.5px; font-weight:500;}
-  .nav-links a:hover{color:var(--blue);}
-  .icon-btn{position:relative; font-size:20px;}
-  .badge-count{position:absolute; top:-6px; right:-9px; background:var(--blue); color:#fff; font-size:10px; font-weight:700; width:16px;height:16px;border-radius:50%; display:flex;align-items:center;justify-content:center;}
-  .category-strip{border-top:1px solid var(--line); overflow-x:auto;}
-  .category-strip .wrap{display:flex; gap:26px; padding:11px 24px; font-size:13.5px; font-weight:500; color:var(--ink-soft); white-space:nowrap;}
-  .category-strip a:hover{color:var(--blue);}
-
-  .ticker{background:var(--purple); color:#fff; overflow:hidden; position:relative; height:38px; display:flex; align-items:center;}
-  .ticker::before{content:"NEW"; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; background:var(--ink); color:#fff; padding:4px 10px; z-index:2; letter-spacing:0.08em; position:relative;}
-  .ticker-track{display:flex; gap:48px; white-space:nowrap; animation:scroll-left 32s linear infinite; padding-left:20px; font-size:13px; font-family:'IBM Plex Mono',monospace;}
-  .ticker-track span b{color:var(--amber); font-weight:600;}
-  @keyframes scroll-left{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
-
-  .error-section{padding:96px 24px; text-align:center;}
-  .error-code{font-family:'IBM Plex Mono',monospace; font-size:96px; font-weight:800; color:var(--purple); line-height:1; margin-bottom:12px;}
-  .error-section h1{font-size:32px; font-weight:800; margin-bottom:16px; letter-spacing:-0.02em;}
-  .error-section p{font-size:16px; color:var(--ink-soft); max-width:540px; margin:0 auto 36px; line-height:1.55;}
-
-  .search-action{max-width:440px; margin:0 auto 32px;}
-  .search-action-box{display:flex; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 16px; gap:12px;}
-  .search-action-box input{border:none; background:transparent; outline:none; width:100%; font-size:15px; color:var(--ink);}
-
-  .btn-back-home{display:inline-block; background:var(--ink); color:#fff; padding:14px 28px; border-radius:8px; font-weight:600; font-size:15px; transition:background .15s;}
-  .btn-back-home:hover{background:var(--purple);}
-
-  footer{padding:48px 24px 28px; border-top:1px solid var(--line); background:var(--paper);}
-  .footer-grid{display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:32px; max-width:1200px; margin:0 auto 32px;}
-  .footer-grid h5{font-size:13px; font-weight:700; margin-bottom:14px;}
-  .footer-grid ul{list-style:none;}
-  .footer-grid li{margin-bottom:9px;}
-  .footer-grid a{font-size:13.5px; color:var(--ink-soft);}
-  .footer-grid a:hover{color:var(--blue);}
-  .footer-brand p{font-size:13px; color:var(--ink-soft); margin-top:10px; line-height:1.5; max-width:280px;}
-  .footer-bottom{max-width:1200px; margin:0 auto; padding-top:22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px; color:var(--ink-soft);}
-  .disclosure{max-width:1200px; margin:0 auto; margin-top:18px; padding:14px 16px; background:var(--panel); border-radius:8px; font-size:11.5px; color:var(--ink-soft); line-height:1.5;}
-
-  @media (max-width:1024px){
-    .footer-grid{grid-template-columns:1fr 1fr;}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  @media (max-width:720px){
-    .nav-inner{flex-wrap:wrap;}
-    .search-box{order:3; max-width:100%; flex-basis:100%;}
-    .nav-links{gap:14px;}
-    .nav-links .hide-mobile{display:none;}
-    .error-code{font-size:72px;}
-    .error-section h1{font-size:26px;}
-    .utility-bar .wrap{flex-direction:column; gap:2px; align-items:flex-start; padding:8px 24px;}
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, .brand {
+    font-family: 'Sora', sans-serif;
+  }
+
+  .mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  button, input {
+    font-family: inherit;
+  }
+
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--purple);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Utility Bar */
+  .utility-bar {
+    background: var(--ink);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .utility-bar .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 24px;
+  }
+
+  .utility-bar span {
+    opacity: 0.9;
+  }
+
+  /* Header & Navigation */
+  header.nav {
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+
+  .brand .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--purple);
+    display: inline-block;
+  }
+
+  .search-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 14px;
+    gap: 10px;
+    max-width: 440px;
+  }
+
+  .search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+
+  .nav-links a {
+    color: var(--ink-soft);
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--purple);
+  }
+
+  .icon-btn {
+    position: relative;
+    font-size: 20px;
+    color: var(--ink);
+    transition: color 0.15s;
+  }
+
+  .icon-btn:hover {
+    color: var(--purple);
+  }
+
+  .badge-count {
+    position: absolute;
+    top: -6px;
+    right: -9px;
+    background: var(--purple);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .category-strip {
+    border-top: 1px solid var(--line);
+    background: #FFF;
+    overflow-x: auto;
+  }
+
+  .category-strip .wrap {
+    display: flex;
+    gap: 28px;
+    padding: 12px 24px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  .category-strip a {
+    transition: color 0.15s;
+  }
+
+  .category-strip a:hover {
+    color: var(--purple);
+  }
+
+  /* FTC Top Banner */
+  .ftc-banner {
+    background: var(--purple-light);
+    border-bottom: 1px solid var(--purple-border);
+    padding: 12px 24px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+
+  .ftc-banner a {
+    color: var(--purple);
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .ftc-banner a:hover {
+    color: var(--ink);
+  }
+
+  /* Ticker */
+  .ticker {
+    background: var(--purple);
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ticker::before {
+    content: "LIVE REVENUE CHECK";
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--ink);
+    color: #fff;
+    padding: 6px 14px;
+    z-index: 2;
+    letter-spacing: 0.08em;
+    position: relative;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: scroll-left 35s linear infinite;
+    padding-left: 20px;
+    font-size: 13.5px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .ticker-track span b {
+    color: #FCD34D;
+    font-weight: 600;
+  }
+
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Error Section */
+  .error-section {
+    padding: 96px 24px;
+    text-align: center;
+  }
+
+  .error-code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 96px;
+    font-weight: 800;
+    color: var(--purple);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .error-section h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .error-section p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin: 0 auto 36px;
+    line-height: 1.55;
+  }
+
+  .btn-back-home {
+    display: inline-block;
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: background .15s, transform .15s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-back-home:hover {
+    background: var(--purple);
+    transform: translateY(-1px);
+  }
+
+  /* Footer */
+  footer {
+    padding: 64px 24px 32px;
+    border-top: 1px solid var(--line);
+    background: var(--panel);
+    margin-top: 64px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
+
+  .footer-grid h5 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: var(--ink);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .footer-grid ul {
+    list-style: none;
+  }
+
+  .footer-grid li {
+    margin-bottom: 12px;
+  }
+
+  .footer-grid a {
+    font-size: 14px;
+    color: var(--ink-soft);
+    transition: color 0.15s;
+  }
+
+  .footer-grid a:hover {
+    color: var(--purple);
+  }
+
+  .footer-brand p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 12px;
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .disclosure {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 1100px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner {
+      flex-wrap: wrap;
+    }
+    .search-box {
+      order: 3;
+      max-width: 100%;
+      flex-basis: 100%;
+    }
+    .nav-links {
+      gap: 16px;
+    }
+    .nav-links .hide-mobile {
+      display: none;
+    }
+    .error-code {
+      font-size: 72px;
+    }
+    .error-section h1 {
+      font-size: 26px;
+    }
+    .utility-bar .wrap {
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+      padding: 10px 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 </head>
 <body>
+
+<!-- FTC Top-level Affiliate Banner Disclosure -->
+<div class="ftc-banner">
+  <strong>FTC Disclosure:</strong> We receive a referral commission when you make a purchase through our links at no extra cost to you. <a href="affiliate-disclosure.html">Learn how we test products</a>.
+</div>
 
 <div class="utility-bar">
   <div class="wrap">
@@ -120,25 +496,22 @@
     <a href="index.html" class="brand"><span class="dot"></span>Smart Deal Hub</a>
     <div class="search-box">
       <span>🔍</span>
-      <input type="text" placeholder="Search AI tools, courses, ebooks, software...">
+      <input type="text" id="productSearch" placeholder="Search curated tools, courses, ebooks..." onkeydown="if(event.key === 'Enter') { window.location.href = 'index.html'; }">
     </div>
     <div class="nav-links">
-      <a href="index.html#products" class="hide-mobile">Top Picks</a>
-      <a href="index.html#reviews" class="hide-mobile">Reviews</a>
-      <a href="index.html#trending" class="hide-mobile">Trending</a>
-      <a href="about.html" class="hide-mobile">About</a>
+      <a href="index.html#products">Top Picks</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
       <a href="#" class="icon-btn" aria-label="Favorites">♡<span class="badge-count">4</span></a>
     </div>
   </div>
   <div class="category-strip">
     <div class="wrap">
-      <a href="index.html#products">AI Tools &amp; Software</a>
-      <a href="index.html#products">Ebooks &amp; Guides</a>
-      <a href="index.html#products">Video Courses</a>
-      <a href="index.html#products">PLR &amp; Templates</a>
-      <a href="index.html#products">Business &amp; Marketing</a>
-      <a href="index.html#products">Health &amp; Wellness</a>
-      <a href="index.html#products">Music &amp; Creative</a>
+      <a href="index.html#products" onclick="setCategory('AI Tools')">AI Tools &amp; Software</a>
+      <a href="index.html#products" onclick="setCategory('Ebooks')">Ebooks &amp; Guides</a>
+      <a href="index.html#products" onclick="setCategory('Courses')">Video Courses</a>
+      <a href="index.html#products" onclick="setCategory('Business')">Business &amp; Marketing</a>
     </div>
   </div>
 </header>
@@ -151,19 +524,13 @@
   <section class="error-section">
     <div class="error-code">404</div>
     <h1>Oops! Page Not Found</h1>
-    <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Try searching for products or return to our homepage.</p>
-
-    <div class="search-action">
-      <form action="index.html" method="GET" class="search-action-box">
-        <span>🔍</span>
-        <input type="text" placeholder="Search AI tools, courses, ebooks, software..." name="q" required>
-      </form>
-    </div>
+    <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Try returning to our homepage to browse our top reviewed products.</p>
 
     <a href="index.html" class="btn-back-home">Return to Homepage</a>
   </section>
 </main>
 
+<!-- Footer -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -174,45 +541,53 @@
       <h5>Explore</h5>
       <ul>
         <li><a href="index.html#products">Top picks</a></li>
-        <li><a href="index.html#trending">Trending</a></li>
-        <li><a href="index.html#products">Categories</a></li>
         <li><a href="index.html#reviews">In-depth reviews</a></li>
+        <li><a href="about.html#how-we-review">Our Process</a></li>
       </ul>
     </div>
     <div>
       <h5>Company</h5>
       <ul>
-        <li><a href="about.html">About us</a></li>
-        <li><a href="about.html#how-we-review">How we review products</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </div>
     <div>
       <h5>Legal</h5>
       <ul>
-        <li><a href="privacy.html">Privacy policy</a></li>
-        <li><a href="terms.html">Terms of use</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
         <li><a href="disclaimer.html">Disclaimer</a></li>
-        <li><a href="affiliate-disclosure.html">Affiliate disclosure</a></li>
+        <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
       </ul>
     </div>
   </div>
   <div class="disclosure">
-    <strong>Affiliate disclosure:</strong> Smart Deal Hub earns a commission when you purchase through links on this site, at no extra cost to you. This never affects which products we choose to feature — every listing is selected on its own merit first. Learn more on our <a href="affiliate-disclosure.html" style="text-decoration: underline; color: var(--purple);">Affiliate Disclosure page</a>.
+    <strong>Affiliate Disclosure:</strong> Smart Deal Hub earns a commission when you purchase through links on this site, at no extra cost to you. This never affects which products we choose to feature — every listing is selected on its own merit first. Learn more on our <a href="affiliate-disclosure.html" style="text-decoration: underline; color: var(--purple); font-weight: 600;">Affiliate Disclosure page</a>.
   </div>
-  <div class="footer-bottom" style="margin-top:18px;">
+  <div class="footer-bottom">
     <span>© 2026 Smart Deal Hub. All rights reserved.</span>
     <span>Built for smart, informed buyers</span>
   </div>
 </footer>
 
 <script>
-  const tickerItems = [
-    "Tube Magic <b>$258 payout</b>", "AI Tools for Everyday Life <b>80% commission</b>", "AI Educator Pro <b>$15.38/sale</b>",
-    "50 Ways to Use ChatGPT <b>$5.27/sale</b>", "AI Song Blueprint <b>$14.86/sale</b>", "AI Art VideoCourse PLR <b>$21.07/sale</b>"
-  ];
-  const track = document.getElementById("tickerTrack");
-  track.innerHTML = [...tickerItems, ...tickerItems].map(t => `<span>${t}</span>`).join("");
+  function setCategory(cat) {
+    localStorage.setItem('selectedCategory', cat);
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const tickerItems = [
+      "Tube Magic <b>$47.00/mo</b>",
+      "AI Educator Pro <b>$30.75</b>",
+      "AI Tools for Everyday Life <b>$17.99</b>",
+      "50 Ways to Use ChatGPT <b>$23.60</b>"
+    ];
+    const track = document.getElementById("tickerTrack");
+    if (track) {
+      track.innerHTML = [...tickerItems, ...tickerItems, ...tickerItems].map(t => `<span>${t}</span>`).join("");
+    }
+  });
 </script>
 
 </body>
