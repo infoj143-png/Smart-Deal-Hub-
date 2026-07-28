@@ -54,102 +54,623 @@
 </script>
 
 <style>
-  :root{
-    --ink:#1A1D29;
-    --ink-soft:#5B6072;
-    --paper:#FFFFFF;
-    --panel:#F5F6F8;
-    --line:#E7E9EE;
-    --blue:#2554F0;
-    --blue-dark:#173BAE;
-    --green:#16A34A;
-    --amber:#F5A623;
-    --purple:#7C3AED;
-    --radius:12px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;}
-  h1,h2,h3,.brand{font-family:'Sora',sans-serif;}
-  .mono{font-family:'IBM Plex Mono',monospace;}
-  a{text-decoration:none;color:inherit;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
-  button{font-family:inherit;cursor:pointer;border:none;}
-  a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  :root {
+    --ink: #111424;
+    --ink-soft: #4F5473;
+    --paper: #FFFFFF;
+    --panel: #F8F9FC;
+    --line: #E2E5F1;
+    --blue: #2554F0;
+    --blue-dark: #1233A5;
+    --green: #10B981;
+    --amber: #F59E0B;
+    --purple: #7C3AED;
+    --purple-light: #F3EEFF;
+    --purple-border: #DDD0FA;
+    --radius: 12px;
   }
 
-  .utility-bar{background:var(--ink); color:#fff; font-size:12.5px;}
-  .utility-bar .wrap{display:flex; justify-content:space-between; align-items:center; padding:8px 24px;}
-  .utility-bar span{opacity:0.85;}
-
-  header.nav{border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--paper); z-index:50;}
-  .nav-inner{display:flex; align-items:center; gap:28px; padding:16px 24px;}
-  .brand{font-weight:800; font-size:22px; letter-spacing:-0.02em; display:flex; align-items:center; gap:8px; white-space:nowrap;}
-  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--purple);display:inline-block;}
-  .search-box{flex:1; display:flex; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 14px; gap:10px; max-width:520px;}
-  .search-box input{border:none;background:transparent;outline:none;width:100%;font-size:14px;color:var(--ink);font-family:'Inter',sans-serif;}
-  .nav-links{display:flex; gap:22px; align-items:center; font-size:14.5px; font-weight:500;}
-  .nav-links a:hover{color:var(--blue);}
-  .icon-btn{position:relative; font-size:20px;}
-  .badge-count{position:absolute; top:-6px; right:-9px; background:var(--blue); color:#fff; font-size:10px; font-weight:700; width:16px;height:16px;border-radius:50%; display:flex;align-items:center;justify-content:center;}
-  .category-strip{border-top:1px solid var(--line); overflow-x:auto;}
-  .category-strip .wrap{display:flex; gap:26px; padding:11px 24px; font-size:13.5px; font-weight:500; color:var(--ink-soft); white-space:nowrap;}
-  .category-strip a:hover{color:var(--blue);}
-
-  .ticker{background:var(--purple); color:#fff; overflow:hidden; position:relative; height:38px; display:flex; align-items:center;}
-  .ticker::before{content:"NEW"; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; background:var(--ink); color:#fff; padding:4px 10px; z-index:2; letter-spacing:0.08em; position:relative;}
-  .ticker-track{display:flex; gap:48px; white-space:nowrap; animation:scroll-left 32s linear infinite; padding-left:20px; font-size:13px; font-family:'IBM Plex Mono',monospace;}
-  .ticker-track span b{color:var(--amber); font-weight:600;}
-  @keyframes scroll-left{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
-
-  .hero-simple{padding:60px 24px 48px; background:var(--panel); border-bottom:1px solid var(--line); text-align:center;}
-  .hero-simple h1{font-size:36px; font-weight:800; letter-spacing:-0.02em; margin-bottom:14px;}
-  .hero-simple p{font-size:16px; color:var(--ink-soft); max-width:640px; margin:0 auto; line-height:1.55;}
-
-  .content-section{padding:56px 24px;}
-  .content-wrap{max-width:800px; margin:0 auto;}
-  .content-block{margin-bottom:44px;}
-  .content-block h2{font-size:24px; font-weight:700; margin-bottom:16px; color:var(--ink); letter-spacing:-0.01em;}
-  .content-block p{font-size:15px; color:var(--ink-soft); line-height:1.7; margin-bottom:18px;}
-  .content-block ul{list-style:none; margin-bottom:18px;}
-  .content-block li{font-size:15px; color:var(--ink-soft); line-height:1.7; margin-bottom:10px; padding-left:24px; position:relative;}
-  .content-block li::before{content:"✓"; color:var(--purple); font-weight:bold; position:absolute; left:0; top:0;}
-
-  .team-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px;}
-  .team-card{border:1px solid var(--line); border-radius:var(--radius); padding:24px; background:var(--panel);}
-  .team-card h3{font-size:18px; font-weight:700; margin-bottom:6px;}
-  .team-card .role{font-size:13px; font-weight:600; color:var(--purple); margin-bottom:12px; font-family:'IBM Plex Mono',monospace; text-transform:uppercase;}
-  .team-card p{font-size:14px; margin-bottom:0;}
-
-  footer{padding:48px 24px 28px; border-top:1px solid var(--line); background:var(--paper);}
-  .footer-grid{display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:32px; max-width:1200px; margin:0 auto 32px;}
-  .footer-grid h5{font-size:13px; font-weight:700; margin-bottom:14px;}
-  .footer-grid ul{list-style:none;}
-  .footer-grid li{margin-bottom:9px;}
-  .footer-grid a{font-size:13.5px; color:var(--ink-soft);}
-  .footer-grid a:hover{color:var(--blue);}
-  .footer-brand p{font-size:13px; color:var(--ink-soft); margin-top:10px; line-height:1.5; max-width:280px;}
-  .footer-bottom{max-width:1200px; margin:0 auto; padding-top:22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px; color:var(--ink-soft);}
-  .disclosure{max-width:1200px; margin:0 auto; margin-top:18px; padding:14px 16px; background:var(--panel); border-radius:8px; font-size:11.5px; color:var(--ink-soft); line-height:1.5;}
-
-  @media (max-width:1024px){
-    .footer-grid{grid-template-columns:1fr 1fr;}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  @media (max-width:720px){
-    .nav-inner{flex-wrap:wrap;}
-    .search-box{order:3; max-width:100%; flex-basis:100%;}
-    .nav-links{gap:14px;}
-    .nav-links .hide-mobile{display:none;}
-    .hero-simple h1{font-size:28px;}
-    .team-grid{grid-template-columns:1fr;}
-    .utility-bar .wrap{flex-direction:column; gap:2px; align-items:flex-start; padding:8px 24px;}
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, .brand {
+    font-family: 'Sora', sans-serif;
+  }
+
+  .mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--purple);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Utility Bar */
+  .utility-bar {
+    background: var(--ink);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .utility-bar .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 24px;
+  }
+
+  .utility-bar span {
+    opacity: 0.9;
+  }
+
+  /* Header & Navigation */
+  header.nav {
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+
+  .brand .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--purple);
+    display: inline-block;
+  }
+
+  .search-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 14px;
+    gap: 10px;
+    max-width: 440px;
+  }
+
+  .search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+
+  .nav-links a {
+    color: var(--ink-soft);
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--purple);
+  }
+
+  .icon-btn {
+    position: relative;
+    font-size: 20px;
+    color: var(--ink);
+    transition: color 0.15s;
+  }
+
+  .icon-btn:hover {
+    color: var(--purple);
+  }
+
+  .badge-count {
+    position: absolute;
+    top: -6px;
+    right: -9px;
+    background: var(--purple);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .category-strip {
+    border-top: 1px solid var(--line);
+    background: #FFF;
+    overflow-x: auto;
+  }
+
+  .category-strip .wrap {
+    display: flex;
+    gap: 28px;
+    padding: 12px 24px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  .category-strip a {
+    transition: color 0.15s;
+  }
+
+  .category-strip a:hover {
+    color: var(--purple);
+  }
+
+  /* FTC Top Banner */
+  .ftc-banner {
+    background: var(--purple-light);
+    border-bottom: 1px solid var(--purple-border);
+    padding: 12px 24px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+
+  .ftc-banner a {
+    color: var(--purple);
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .ftc-banner a:hover {
+    color: var(--ink);
+  }
+
+  /* Ticker */
+  .ticker {
+    background: var(--purple);
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ticker::before {
+    content: "LIVE REVENUE CHECK";
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--ink);
+    color: #fff;
+    padding: 6px 14px;
+    z-index: 2;
+    letter-spacing: 0.08em;
+    position: relative;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: scroll-left 35s linear infinite;
+    padding-left: 20px;
+    font-size: 13.5px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .ticker-track span b {
+    color: #FCD34D;
+    font-weight: 600;
+  }
+
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Hero Section */
+  .hero-simple {
+    padding: 60px 24px 48px;
+    background: radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.04) 0%, rgba(255,255,255,0) 50%), var(--panel);
+    border: 1px solid var(--line);
+    text-align: center;
+    border-radius: var(--radius);
+    margin-top: 24px;
+  }
+
+  .hero-simple h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+
+  .hero-simple p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  /* Content Block Styling */
+  .content-section {
+    padding: 48px 24px;
+  }
+
+  .content-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .content-block {
+    margin-bottom: 44px;
+  }
+
+  .content-block h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .content-block p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .content-block ul {
+    list-style: none;
+    margin-bottom: 18px;
+  }
+
+  .content-block li {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 10px;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .content-block li::before {
+    content: "✓";
+    color: var(--purple);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  .team-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+    background: var(--panel);
+  }
+
+  .team-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .team-card .role {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--purple);
+    margin-bottom: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+  }
+
+  .team-card p {
+    font-size: 14px;
+    margin-bottom: 0;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* Newsletter Block */
+  .newsletter {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 16px;
+    padding: 48px;
+    margin: 16px 24px 0;
+    max-width: 1152px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    box-shadow: 0 10px 30px rgba(17, 20, 36, 0.1);
+  }
+
+  .newsletter h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .newsletter p {
+    font-size: 14px;
+    color: #B2B7D4;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    flex: 1;
+    max-width: 520px;
+    justify-content: flex-end;
+  }
+
+  .newsletter-form input {
+    padding: 13px 18px;
+    border-radius: 8px;
+    border: 1px solid #2B304A;
+    background: #1C2038;
+    color: #fff;
+    font-size: 14px;
+    flex: 1;
+    min-width: 240px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .newsletter-form input:focus {
+    border-color: var(--purple);
+  }
+
+  .newsletter-form input::placeholder {
+    color: #6C7293;
+  }
+
+  .newsletter-form button {
+    background: var(--purple);
+    color: #fff;
+    padding: 13px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: background 0.15s;
+  }
+
+  .newsletter-form button:hover {
+    background: #6425D6;
+  }
+
+  /* Footer */
+  footer {
+    padding: 64px 24px 32px;
+    border-top: 1px solid var(--line);
+    background: var(--panel);
+    margin-top: 64px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
+
+  .footer-grid h5 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: var(--ink);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .footer-grid ul {
+    list-style: none;
+  }
+
+  .footer-grid li {
+    margin-bottom: 12px;
+  }
+
+  .footer-grid a {
+    font-size: 14px;
+    color: var(--ink-soft);
+    transition: color 0.15s;
+  }
+
+  .footer-grid a:hover {
+    color: var(--purple);
+  }
+
+  .footer-brand p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 12px;
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .disclosure {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 1100px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner {
+      flex-wrap: wrap;
+    }
+    .search-box {
+      order: 3;
+      max-width: 100%;
+      flex-basis: 100%;
+    }
+    .nav-links {
+      gap: 16px;
+    }
+    .nav-links .hide-mobile {
+      display: none;
+    }
+    .hero-simple h1 {
+      font-size: 28px;
+    }
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+    .newsletter {
+      padding: 32px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .newsletter-form {
+      width: 100%;
+      justify-content: flex-start;
+    }
+    .utility-bar .wrap {
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+      padding: 10px 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 </head>
 <body>
+
+<!-- FTC Top-level Affiliate Banner Disclosure -->
+<div class="ftc-banner">
+  <strong>FTC Disclosure:</strong> We receive a referral commission when you make a purchase through our links at no extra cost to you. <a href="affiliate-disclosure.html">Learn how we test products</a>.
+</div>
 
 <div class="utility-bar">
   <div class="wrap">
@@ -163,25 +684,22 @@
     <a href="index.html" class="brand"><span class="dot"></span>Smart Deal Hub</a>
     <div class="search-box">
       <span>🔍</span>
-      <input type="text" placeholder="Search AI tools, courses, ebooks, software...">
+      <input type="text" id="productSearch" placeholder="Search curated tools, courses, ebooks..." onkeydown="if(event.key === 'Enter') { window.location.href = 'index.html'; }">
     </div>
     <div class="nav-links">
-      <a href="index.html#products" class="hide-mobile">Top Picks</a>
-      <a href="index.html#reviews" class="hide-mobile">Reviews</a>
-      <a href="index.html#trending" class="hide-mobile">Trending</a>
-      <a href="about.html" class="hide-mobile">About</a>
+      <a href="index.html#products">Top Picks</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
       <a href="#" class="icon-btn" aria-label="Favorites">♡<span class="badge-count">4</span></a>
     </div>
   </div>
   <div class="category-strip">
     <div class="wrap">
-      <a href="index.html#products">AI Tools &amp; Software</a>
-      <a href="index.html#products">Ebooks &amp; Guides</a>
-      <a href="index.html#products">Video Courses</a>
-      <a href="index.html#products">PLR &amp; Templates</a>
-      <a href="index.html#products">Business &amp; Marketing</a>
-      <a href="index.html#products">Health &amp; Wellness</a>
-      <a href="index.html#products">Music &amp; Creative</a>
+      <a href="index.html#products" onclick="setCategory('AI Tools')">AI Tools &amp; Software</a>
+      <a href="index.html#products" onclick="setCategory('Ebooks')">Ebooks &amp; Guides</a>
+      <a href="index.html#products" onclick="setCategory('Courses')">Video Courses</a>
+      <a href="index.html#products" onclick="setCategory('Business')">Business &amp; Marketing</a>
     </div>
   </div>
 </header>
@@ -191,7 +709,7 @@
 </div>
 
 <main class="wrap">
-  <section class="hero-simple" style="margin-top: 24px; border-radius: var(--radius);">
+  <section class="hero-simple">
     <h1>About Smart Deal Hub</h1>
     <p>We are a dedicated group of digital product reviewers and marketing experts. Our focus is to filter out the noise and provide honest, comprehensive reviews of the best AI tools, templates, video courses, and ebooks on the web.</p>
   </section>
@@ -244,8 +762,21 @@
 
     </div>
   </section>
+
+  <!-- Newsletter Section -->
+  <div class="newsletter">
+    <div>
+      <h3>Get the best new AI tools before everyone else</h3>
+      <p>One email a week, only the products worth your money. Unsubscribe anytime.</p>
+    </div>
+    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+      <input type="email" placeholder="you@example.com" aria-label="Email address for newsletter" required>
+      <button type="submit">Get Updates</button>
+    </form>
+  </div>
 </main>
 
+<!-- Footer -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -256,45 +787,53 @@
       <h5>Explore</h5>
       <ul>
         <li><a href="index.html#products">Top picks</a></li>
-        <li><a href="index.html#trending">Trending</a></li>
-        <li><a href="index.html#products">Categories</a></li>
         <li><a href="index.html#reviews">In-depth reviews</a></li>
+        <li><a href="about.html#how-we-review">Our Process</a></li>
       </ul>
     </div>
     <div>
       <h5>Company</h5>
       <ul>
-        <li><a href="about.html">About us</a></li>
-        <li><a href="about.html#how-we-review">How we review products</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </div>
     <div>
       <h5>Legal</h5>
       <ul>
-        <li><a href="privacy.html">Privacy policy</a></li>
-        <li><a href="terms.html">Terms of use</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
         <li><a href="disclaimer.html">Disclaimer</a></li>
-        <li><a href="affiliate-disclosure.html">Affiliate disclosure</a></li>
+        <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
       </ul>
     </div>
   </div>
   <div class="disclosure">
-    <strong>Affiliate disclosure:</strong> Smart Deal Hub earns a commission when you purchase through links on this site, at no extra cost to you. This never affects which products we choose to feature — every listing is selected on its own merit first. Learn more on our <a href="affiliate-disclosure.html" style="text-decoration: underline; color: var(--purple);">Affiliate Disclosure page</a>.
+    <strong>Affiliate Disclosure:</strong> Smart Deal Hub earns a commission when you purchase through links on this site, at no extra cost to you. This never affects which products we choose to feature — every listing is selected on its own merit first. Learn more on our <a href="affiliate-disclosure.html" style="text-decoration: underline; color: var(--purple); font-weight: 600;">Affiliate Disclosure page</a>.
   </div>
-  <div class="footer-bottom" style="margin-top:18px;">
+  <div class="footer-bottom">
     <span>© 2026 Smart Deal Hub. All rights reserved.</span>
     <span>Built for smart, informed buyers</span>
   </div>
 </footer>
 
 <script>
-  const tickerItems = [
-    "Tube Magic <b>$258 payout</b>", "AI Tools for Everyday Life <b>80% commission</b>", "AI Educator Pro <b>$15.38/sale</b>",
-    "50 Ways to Use ChatGPT <b>$5.27/sale</b>", "AI Song Blueprint <b>$14.86/sale</b>", "AI Art VideoCourse PLR <b>$21.07/sale</b>"
-  ];
-  const track = document.getElementById("tickerTrack");
-  track.innerHTML = [...tickerItems, ...tickerItems].map(t => `<span>${t}</span>`).join("");
+  function setCategory(cat) {
+    localStorage.setItem('selectedCategory', cat);
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const tickerItems = [
+      "Tube Magic <b>$47.00/mo</b>",
+      "AI Educator Pro <b>$30.75</b>",
+      "AI Tools for Everyday Life <b>$17.99</b>",
+      "50 Ways to Use ChatGPT <b>$23.60</b>"
+    ];
+    const track = document.getElementById("tickerTrack");
+    if (track) {
+      track.innerHTML = [...tickerItems, ...tickerItems, ...tickerItems].map(t => `<span>${t}</span>`).join("");
+    }
+  });
 </script>
 
 </body>
