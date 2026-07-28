@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Primary SEO -->
-<title>About Us — Smart Deal Hub</title>
-<meta name="description" content="Discover who we are, our mission, and our rigorous hands-on product testing and review process. Learn why readers trust Smart Deal Hub.">
+<title>Contact Us — Smart Deal Hub</title>
+<meta name="description" content="Have a question or feedback? Contact the Smart Deal Hub team. We would love to hear from you. Submissions processed daily.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Smart Deal Hub">
-<link rel="canonical" href="https://smart-deal-hub-phi.vercel.app/about.html">
+<link rel="canonical" href="https://smart-deal-hub-phi.vercel.app/contact.html">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Smart Deal Hub">
-<meta property="og:title" content="About Us — Smart Deal Hub">
-<meta property="og:description" content="Discover who we are, our mission, and our rigorous hands-on product testing and review process. Learn why readers trust Smart Deal Hub.">
-<meta property="og:url" content="https://smart-deal-hub-phi.vercel.app/about.html">
+<meta property="og:title" content="Contact Us — Smart Deal Hub">
+<meta property="og:description" content="Have a question or feedback? Contact the Smart Deal Hub team. We would love to hear from you. Submissions processed daily.">
+<meta property="og:url" content="https://smart-deal-hub-phi.vercel.app/contact.html">
 <meta property="og:image" content="https://smart-deal-hub-phi.vercel.app/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,8 +24,8 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About Us — Smart Deal Hub">
-<meta name="twitter:description" content="Discover who we are, our mission, and our rigorous hands-on product testing and review process. Learn why readers trust Smart Deal Hub.">
+<meta name="twitter:title" content="Contact Us — Smart Deal Hub">
+<meta name="twitter:description" content="Have a question or feedback? Contact the Smart Deal Hub team. We would love to hear from you. Submissions processed daily.">
 <meta name="twitter:image" content="https://smart-deal-hub-phi.vercel.app/og-image.png">
 
 <!-- Favicon -->
@@ -35,20 +35,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-<!-- Structured Data: AboutPage & Organization -->
+<!-- Structured Data: ContactPage -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "name": "About Smart Deal Hub",
-  "description": "Learn about Smart Deal Hub, our mission, and our process for reviewing AI tools and digital products.",
-  "url": "https://smart-deal-hub-phi.vercel.app/about.html",
+  "@type": "ContactPage",
+  "name": "Contact Smart Deal Hub",
+  "description": "Get in touch with the Smart Deal Hub editorial or support team.",
+  "url": "https://smart-deal-hub-phi.vercel.app/contact.html",
   "mainEntity": {
     "@type": "Organization",
     "name": "Smart Deal Hub",
     "url": "https://smart-deal-hub-phi.vercel.app/",
-    "logo": "https://smart-deal-hub-phi.vercel.app/favicon.svg",
-    "description": "Smart Deal Hub reviews and ranks the best AI tools, online courses, ebooks, and digital products."
+    "email": "contact@smart-deal-hub-phi.vercel.app"
   }
 }
 </script>
@@ -75,8 +74,8 @@
   a{text-decoration:none;color:inherit;}
   img{max-width:100%;display:block;}
   .wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
-  button{font-family:inherit;cursor:pointer;border:none;}
-  a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+  button, input, textarea{font-family:inherit;}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
   }
@@ -109,20 +108,31 @@
   .hero-simple h1{font-size:36px; font-weight:800; letter-spacing:-0.02em; margin-bottom:14px;}
   .hero-simple p{font-size:16px; color:var(--ink-soft); max-width:640px; margin:0 auto; line-height:1.55;}
 
-  .content-section{padding:56px 24px;}
-  .content-wrap{max-width:800px; margin:0 auto;}
-  .content-block{margin-bottom:44px;}
-  .content-block h2{font-size:24px; font-weight:700; margin-bottom:16px; color:var(--ink); letter-spacing:-0.01em;}
-  .content-block p{font-size:15px; color:var(--ink-soft); line-height:1.7; margin-bottom:18px;}
-  .content-block ul{list-style:none; margin-bottom:18px;}
-  .content-block li{font-size:15px; color:var(--ink-soft); line-height:1.7; margin-bottom:10px; padding-left:24px; position:relative;}
-  .content-block li::before{content:"✓"; color:var(--purple); font-weight:bold; position:absolute; left:0; top:0;}
+  .contact-section{padding:56px 24px;}
+  .contact-grid{display:grid; grid-template-columns:1.2fr 0.8fr; gap:48px; max-width:1152px; margin:0 auto;}
 
-  .team-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px;}
-  .team-card{border:1px solid var(--line); border-radius:var(--radius); padding:24px; background:var(--panel);}
-  .team-card h3{font-size:18px; font-weight:700; margin-bottom:6px;}
-  .team-card .role{font-size:13px; font-weight:600; color:var(--purple); margin-bottom:12px; font-family:'IBM Plex Mono',monospace; text-transform:uppercase;}
-  .team-card p{font-size:14px; margin-bottom:0;}
+  .contact-form-container{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:36px;}
+  .contact-form-container h2{font-size:22px; font-weight:700; margin-bottom:18px; letter-spacing:-0.01em;}
+  .contact-form-container p{font-size:14.5px; color:var(--ink-soft); margin-bottom:24px; line-height:1.6;}
+
+  .form-group{margin-bottom:20px;}
+  .form-group label{display:block; font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:8px;}
+  .form-control{width:100%; padding:12px 16px; border:1px solid var(--line); border-radius:8px; background:var(--panel); font-size:14.5px; color:var(--ink); outline:none; transition:border-color .15s;}
+  .form-control:focus{border-color:var(--purple); background:var(--paper);}
+  textarea.form-control{resize:vertical; min-height:140px;}
+
+  .btn-submit{background:var(--purple); color:#fff; padding:13px 28px; border-radius:8px; font-weight:600; font-size:14.5px; border:none; cursor:pointer; width:100%; transition:background .15s;}
+  .btn-submit:hover{background:#6425D6;}
+
+  .success-message{display:none; background:#DEF7EC; border:1px solid #BCF0DA; color:#03543F; padding:16px; border-radius:8px; font-size:14.5px; font-weight:500; margin-bottom:20px;}
+
+  .info-sidebar{display:flex; flex-direction:column; gap:32px;}
+  .info-card{border:1px solid var(--line); border-radius:var(--radius); padding:28px; background:var(--panel);}
+  .info-card h3{font-size:18px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .info-card p{font-size:14.5px; color:var(--ink-soft); line-height:1.6; margin-bottom:12px;}
+  .info-card ul{list-style:none;}
+  .info-card li{font-size:14px; color:var(--ink-soft); margin-bottom:10px; display:flex; justify-content:space-between;}
+  .info-card li strong{color:var(--ink);}
 
   footer{padding:48px 24px 28px; border-top:1px solid var(--line); background:var(--paper);}
   .footer-grid{display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:32px; max-width:1200px; margin:0 auto 32px;}
@@ -137,6 +147,7 @@
 
   @media (max-width:1024px){
     .footer-grid{grid-template-columns:1fr 1fr;}
+    .contact-grid{grid-template-columns:1fr;}
   }
   @media (max-width:720px){
     .nav-inner{flex-wrap:wrap;}
@@ -144,7 +155,7 @@
     .nav-links{gap:14px;}
     .nav-links .hide-mobile{display:none;}
     .hero-simple h1{font-size:28px;}
-    .team-grid{grid-template-columns:1fr;}
+    .contact-form-container{padding:24px;}
     .utility-bar .wrap{flex-direction:column; gap:2px; align-items:flex-start; padding:8px 24px;}
   }
 </style>
@@ -192,54 +203,66 @@
 
 <main class="wrap">
   <section class="hero-simple" style="margin-top: 24px; border-radius: var(--radius);">
-    <h1>About Smart Deal Hub</h1>
-    <p>We are a dedicated group of digital product reviewers and marketing experts. Our focus is to filter out the noise and provide honest, comprehensive reviews of the best AI tools, templates, video courses, and ebooks on the web.</p>
+    <h1>Get In Touch</h1>
+    <p>Have any questions, partnership proposals, or product review suggestions? Let us know. Fill out the form below, and we'll get back to you shortly.</p>
   </section>
 
-  <section class="content-section">
-    <div class="content-wrap">
+  <section class="contact-section">
+    <div class="contact-grid">
 
-      <div class="content-block">
-        <h2>Who We Are</h2>
-        <p>Launched in 2026, Smart Deal Hub was founded with a clear vision: to create the ultimate curation of digital tools, courses, and software. The modern market is flooded with "get rich quick" products, over-hyped AI tools, and online classes that deliver little to no real-world value. We wanted to build a repository of products that are genuinely checked, tested, and vetted by digital specialists.</p>
-        <p>Our team consists of full-time affiliate marketers, software testers, and writers who have a passion for productivity, technology, and learning.</p>
-      </div>
-
-      <div class="content-block">
-        <h2>Our Mission</h2>
-        <p>Our mission is simple: <strong>To help you skip the trial and error.</strong> We believe that nobody should waste their hard-earned money on a digital subscription or course before knowing what's actually inside the members-only area. We purchase, explore, and analyze products to give you a complete, unbiased picture.</p>
-      </div>
-
-      <div class="content-block" id="how-we-review">
-        <h2>How We Review Products</h2>
-        <p>We follow a highly transparent, 4-step reviewing and ranking methodology:</p>
-        <ul>
-          <li><strong>Direct Purchasing &amp; Testing:</strong> When possible, we acquire direct access or accounts from developers and authors. We test the speed, accuracy, features, and actual output of every AI software tool.</li>
-          <li><strong>Vetting the Claims:</strong> We compare the product's marketing pitch with what it actually delivers. If a sales page promises "10x YouTube growth with one click," we measure the actual performance of its keyword tool.</li>
-          <li><strong>Aggregated User Feedback:</strong> We analyze online forums, social media, and customer ratings to see if other users are reporting bugs, billing issues, or high refund rates.</li>
-          <li><strong>Price vs. Value Evaluation:</strong> We evaluate if a product is worth its one-time or recurring price tag. If there is a free or much cheaper open-source alternative, we always call that out.</li>
-        </ul>
-      </div>
-
-      <div class="content-block">
-        <h2>Why You Can Trust Us</h2>
-        <p>We do not accept payments to write positive reviews. Our rankings are driven entirely by our hands-on findings and extensive data. We are transparent about how we earn money: through affiliate partnerships with platforms and creators. When you click a link and buy a product through our site, we may earn a small commission at no additional cost to you. This structure motivates us to only recommend products that keep our readers happy, as high refund rates yield zero commission and damage our reputation.</p>
-      </div>
-
-      <div class="content-block">
-        <h2>Our Editorial Team</h2>
-        <div class="team-grid">
-          <div class="team-card">
-            <h3>Marcus Vane</h3>
-            <div class="role">Lead Software Reviewer</div>
-            <p>Marcus has spent over 8 years testing SaaS tools and writing product comparisons. He specializes in natural language processing and video automation tools.</p>
-          </div>
-          <div class="team-card">
-            <h3>Sarah Jenkins</h3>
-            <div class="role">Course &amp; PLR Editor</div>
-            <p>Sarah is an e-learning design specialist and former educator. She spends her weeks analyzing curriculum depth and digital download packages.</p>
-          </div>
+      <div class="contact-form-container">
+        <div id="successMsg" class="success-message">
+          ✓ Thank you! Your message has been sent successfully. We will get back to you within 24 hours.
         </div>
+
+        <h2>Send Us a Message</h2>
+        <p>Your email address will not be published. Required fields are marked *</p>
+
+        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email *</label>
+            <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject *</label>
+            <input type="text" id="subject" class="form-control" placeholder="Product Submission / General Question" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" class="form-control" placeholder="Tell us how we can help..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="info-sidebar">
+
+        <div class="info-card">
+          <h3>✉ Direct Contact</h3>
+          <p>Prefer direct emailing? You can reach our editorial team or support desk at:</p>
+          <p><strong style="color: var(--purple); font-size: 15px;">contact@smart-deal-hub-phi.vercel.app</strong></p>
+        </div>
+
+        <div class="info-card">
+          <h3>⏱ Response Hours</h3>
+          <p>We work hard to respond as quickly as possible. Our regular operational details include:</p>
+          <ul>
+            <li><span><strong>Monday - Friday:</strong></span> <span>9:00 AM - 6:00 PM EST</span></li>
+            <li><span><strong>Saturday - Sunday:</strong></span> <span>11:00 AM - 4:00 PM EST</span></li>
+            <li><span><strong>Avg. Response Time:</strong></span> <span style="color: var(--green); font-weight: 600;">&lt; 24 Hours</span></li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>📣 Product Creators</h3>
+          <p>Are you a course author or software developer? If you want us to review your digital product, please specify your platform (Gumroad, WarriorPlus, ClickBank, etc.) and include access details or a demo key for our reviewers.</p>
+        </div>
+
       </div>
 
     </div>
@@ -295,6 +318,13 @@
   ];
   const track = document.getElementById("tickerTrack");
   track.innerHTML = [...tickerItems, ...tickerItems].map(t => `<span>${t}</span>`).join("");
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    document.getElementById("successMsg").style.display = "block";
+    document.getElementById("contactForm").reset();
+    window.scrollTo({ top: 150, behavior: "smooth" });
+  }
 </script>
 
 </body>
