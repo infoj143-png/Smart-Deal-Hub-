@@ -55,19 +55,23 @@
 
 <style>
   :root {
-    --ink: #111424;
-    --ink-soft: #4F5473;
+    --ink: #0F172A;
+    --ink-soft: #475569;
     --paper: #FFFFFF;
-    --panel: #F8F9FC;
-    --line: #E2E5F1;
-    --blue: #2554F0;
-    --blue-dark: #1233A5;
+    --panel: #F8FAFC;
+    --line: #E2E8F0;
+    --blue: #3B82F6;
+    --blue-dark: #1D4ED8;
     --green: #10B981;
     --amber: #F59E0B;
     --purple: #7C3AED;
-    --purple-light: #F3EEFF;
-    --purple-border: #DDD0FA;
-    --radius: 12px;
+    --purple-light: #F5F3FF;
+    --purple-border: #DDD6FE;
+    --radius: 16px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 
   * {
@@ -551,7 +555,7 @@
     margin: 0 auto 40px;
   }
 
-  .footer-grid h5 {
+  .footer-grid h4 {
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 18px;
@@ -683,8 +687,8 @@
   <div class="nav-inner">
     <a href="index.html" class="brand"><span class="dot"></span>Smart Deal Hub</a>
     <div class="search-box">
-      <span>🔍</span>
-      <input type="text" id="productSearch" placeholder="Search curated tools, courses, ebooks..." onkeydown="if(event.key === 'Enter') { window.location.href = 'index.html'; }">
+      <span role="img" aria-label="Search icon">🔍</span>
+      <input type="text" id="productSearch" aria-label="Search curated tools, courses, and digital products" placeholder="Search curated tools, courses, ebooks..." onkeydown="if(event.key === 'Enter') { window.location.href = 'index.html?search=' + encodeURIComponent(this.value); }">
     </div>
     <div class="nav-links">
       <a href="index.html#products">Top Picks</a>
@@ -784,7 +788,7 @@
       <p>We review AI tools, courses, and digital products so you know what's actually worth downloading before you buy.</p>
     </div>
     <div>
-      <h5>Explore</h5>
+      <h4>Explore</h4>
       <ul>
         <li><a href="index.html#products">Top picks</a></li>
         <li><a href="index.html#reviews">In-depth reviews</a></li>
@@ -792,14 +796,14 @@
       </ul>
     </div>
     <div>
-      <h5>Company</h5>
+      <h4>Company</h4>
       <ul>
         <li><a href="about.html">About Us</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </div>
     <div>
-      <h5>Legal</h5>
+      <h4>Legal</h4>
       <ul>
         <li><a href="privacy.html">Privacy Policy</a></li>
         <li><a href="terms.html">Terms &amp; Conditions</a></li>

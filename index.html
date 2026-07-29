@@ -1135,7 +1135,7 @@
     margin: 0 auto 40px;
   }
 
-  .footer-grid h5 {
+  .footer-grid h4 {
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 18px;
@@ -1294,8 +1294,8 @@
   <div class="nav-inner">
     <a href="index.html" class="brand"><span class="dot"></span>Smart Deal Hub</a>
     <div class="search-box">
-      <span>🔍</span>
-      <input type="text" id="productSearch" placeholder="Search curated tools, courses, ebooks...">
+      <span role="img" aria-label="Search icon">🔍</span>
+      <input type="text" id="productSearch" aria-label="Search curated tools, courses, and digital products" placeholder="Search curated tools, courses, ebooks...">
     </div>
     <div class="nav-links">
       <a href="index.html#products">Top Picks</a>
@@ -1481,28 +1481,28 @@
 <div class="trust-strip">
   <div class="trust-inner">
     <div class="trust-item">
-      <span class="ic">✅</span>
+      <span class="ic" role="img" aria-label="Checked checkbox">✅</span>
       <div>
         <h4>Hands-On Tested</h4>
         <p>We test every digital product and software platform before listing — never relying on marketing copy.</p>
       </div>
     </div>
     <div class="trust-item">
-      <span class="ic">⚡</span>
+      <span class="ic" role="img" aria-label="Lightning bolt">⚡</span>
       <div>
         <h4>Instant Access</h4>
         <p>All items are digital. Skip the shipping fees and download your content immediately after checkout.</p>
       </div>
     </div>
     <div class="trust-item">
-      <span class="ic">🔄</span>
+      <span class="ic" role="img" aria-label="Circular arrows">🔄</span>
       <div>
         <h4>Risk-Free Policy</h4>
         <p>Purchases are covered by official, creator-backed money-back refund guarantees.</p>
       </div>
     </div>
     <div class="trust-item">
-      <span class="ic">🔒</span>
+      <span class="ic" role="img" aria-label="Closed lock">🔒</span>
       <div>
         <h4>Secure Platform</h4>
         <p>Check out securely directly on merchant platforms like Gumroad or ClickBank. Your data is safe.</p>
@@ -1510,6 +1510,52 @@
     </div>
   </div>
 </div>
+
+<!-- Why Trust Smart Deal Hub Section -->
+<section class="section" id="why-trust" style="background: var(--panel); border-bottom: 1px solid var(--line);">
+  <div class="wrap" style="max-width: 900px; margin: 0 auto;">
+    <div class="section-head" style="justify-content: center; text-align: center; border-bottom: none; margin-bottom: 24px; padding-bottom: 0;">
+      <h2 style="font-size: 32px; font-weight: 800;">Why Trust Smart Deal Hub?</h2>
+    </div>
+    <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.7; text-align: center; margin-bottom: 32px;">
+      The internet is flooded with fake reviews, artificial ratings, and over-hyped software recommendations designed only to collect referral fees. At <strong>Smart Deal Hub</strong>, we do things differently to build lasting relationships with our community.
+    </p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 16px;">
+      <div style="background: var(--paper); padding: 24px; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-sm);">
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--ink); display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--purple); font-size: 20px;" role="img" aria-label="Verification shield">🛡️</span> Hands-on Testing
+        </h3>
+        <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6;">
+          We purchase the digital products we review with our own funds or secure full demo keys. Every workflow feature is opened, processed, and checked for functional quality.
+        </p>
+      </div>
+      <div style="background: var(--paper); padding: 24px; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-sm);">
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--ink); display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--purple); font-size: 20px;" role="img" aria-label="Scale/balance">⚖️</span> Honest Pros &amp; Cons
+        </h3>
+        <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6;">
+          No digital product is perfect. We list pricing limits, dashboard bugs, learning curves, and recurring subscription details so you understand exactly what to expect.
+        </p>
+      </div>
+      <div style="background: var(--paper); padding: 24px; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-sm);">
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--ink); display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--purple); font-size: 20px;" role="img" aria-label="Bar chart">📊</span> Data-Backed Selection
+        </h3>
+        <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6;">
+          Our curated collection is strictly locked to four outstanding premium items at a time. This constraint ensures we only recommend platforms with proven high buyer ratings and low refund stats.
+        </p>
+      </div>
+      <div style="background: var(--paper); padding: 24px; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-sm);">
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--ink); display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--purple); font-size: 20px;" role="img" aria-label="Mail envelope">✉️</span> Accessible Support
+        </h3>
+        <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6;">
+          Have questions about a software selection or video course workflow? Reach out to our dedicated team anytime at <a href="mailto:infoj.j143@gmail.com" style="color: var(--purple); font-weight: 600; text-decoration: underline;">infoj.j143@gmail.com</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Detailed Editorial Reviews Section -->
 <section class="section" id="reviews">
@@ -1573,7 +1619,7 @@
       <p>We review AI tools, courses, and digital products so you know what's actually worth downloading before you buy.</p>
     </div>
     <div>
-      <h5>Explore</h5>
+      <h4>Explore</h4>
       <ul>
         <li><a href="index.html#products">Top picks</a></li>
         <li><a href="index.html#reviews">In-depth reviews</a></li>
@@ -1581,14 +1627,14 @@
       </ul>
     </div>
     <div>
-      <h5>Company</h5>
+      <h4>Company</h4>
       <ul>
         <li><a href="about.html">About Us</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </div>
     <div>
-      <h5>Legal</h5>
+      <h4>Legal</h4>
       <ul>
         <li><a href="privacy.html">Privacy Policy</a></li>
         <li><a href="terms.html">Terms &amp; Conditions</a></li>
@@ -1772,12 +1818,30 @@
 
   // Initial Render on page load
   window.addEventListener("DOMContentLoaded", () => {
-    const savedCat = localStorage.getItem('selectedCategory');
-    if (savedCat) {
-      localStorage.removeItem('selectedCategory');
-      filterCategory(savedCat);
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase().trim();
+      const searchInput = document.getElementById("productSearch");
+      if (searchInput) {
+        searchInput.value = searchQuery;
+      }
+      const filtered = products.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.desc.toLowerCase().includes(q) ||
+        p.format.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q)
+      );
+      renderGrid(filtered);
     } else {
-      renderGrid(products);
+      const savedCat = localStorage.getItem('selectedCategory');
+      if (savedCat) {
+        localStorage.removeItem('selectedCategory');
+        filterCategory(savedCat);
+      } else {
+        renderGrid(products);
+      }
     }
 
     const tickerItems = [
