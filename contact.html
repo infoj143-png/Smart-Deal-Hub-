@@ -461,14 +461,34 @@
 
   .success-message {
     display: none;
-    background: #DEF7EC;
-    border: 1px solid #BCF0DA;
-    color: #03543F;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(16, 185, 129, 0.15); /* Green glass */
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10B981;
     padding: 16px;
     border-radius: 8px;
     font-size: 14.5px;
     font-weight: 600;
     margin-bottom: 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .error-message-glass {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(239, 68, 68, 0.15); /* Red glass */
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #EF4444;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .info-sidebar {
@@ -724,6 +744,41 @@
     }
   }
 </style>
+<!-- Google Analytics 4 (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XXXXXXXXXX');
+
+  // Outbound Affiliate Link Tracking
+  document.addEventListener('click', function(e) {
+    const anchor = e.target.closest('a');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href') || '';
+    const isExternal = href.startsWith('http') && !href.includes(window.location.hostname);
+    if (isExternal) {
+      let productName = '';
+      const card = anchor.closest('.deal-card');
+      if (card) {
+        const titleEl = card.querySelector('.deal-title a') || card.querySelector('.deal-title') || card.querySelector('.fc-title');
+        if (titleEl) productName = titleEl.textContent.trim();
+      } else {
+        const h1 = document.querySelector('h1');
+        if (h1) productName = h1.textContent.trim();
+      }
+      if (!productName) {
+        productName = anchor.textContent.trim() || 'Unknown Product';
+      }
+      gtag('event', 'affiliate_click', {
+        'product_name': productName,
+        'destination_url': href
+      });
+    }
+  });
+</script>
 </head>
 <body>
 
@@ -785,7 +840,7 @@
         <h2>Send Us a Message</h2>
         <p>Your email address will not be published. Required fields are marked *</p>
 
-        <div id="errorMsg" style="display: none; background: #FDE8E8; border: 1px solid #F8B4B4; color: #9B1C1C; padding: 16px; border-radius: 8px; font-size: 14.5px; font-weight: 600; margin-bottom: 20px;">
+        <div id="errorMsg" class="error-message-glass">
           ⚠️ Failed to send message. Please try again, or email us directly at <span class="obf-email" style="cursor: pointer; color: inherit; text-decoration: underline;" onclick="window.location.href='mailto:' + ['infoj','j143'].join('.') + '@' + 'gmail.com'; event.stopPropagation();"><script>document.write(['infoj','j143'].join('.') + '@' + 'gmail.com');</script></span>.
         </div>
 
@@ -911,7 +966,9 @@
     const errorMsg = document.getElementById("errorMsg");
 
     successMsg.style.display = "none";
+    successMsg.style.opacity = "0";
     errorMsg.style.display = "none";
+    errorMsg.style.opacity = "0";
 
     const originalText = submitBtn.textContent;
     submitBtn.disabled = true;
@@ -947,15 +1004,27 @@
     .then(res => {
       if (res.ok) {
         successMsg.style.display = "block";
+        setTimeout(() => { successMsg.style.opacity = "1"; }, 10);
         form.reset();
         window.scrollTo({ top: 150, behavior: "smooth" });
+
+        setTimeout(() => {
+          successMsg.style.opacity = "0";
+          setTimeout(() => { successMsg.style.display = "none"; }, 300);
+        }, 5000);
       } else {
         throw new Error("Server responded with error");
       }
     })
     .catch(err => {
       errorMsg.style.display = "block";
+      setTimeout(() => { errorMsg.style.opacity = "1"; }, 10);
       window.scrollTo({ top: 150, behavior: "smooth" });
+
+      setTimeout(() => {
+        errorMsg.style.opacity = "0";
+        setTimeout(() => { errorMsg.style.display = "none"; }, 300);
+      }, 5000);
     })
     .finally(() => {
       submitBtn.disabled = false;
@@ -964,6 +1033,14 @@
   }
 
   window.addEventListener("DOMContentLoaded", () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('savedProducts') || '[]');
+      document.querySelectorAll('.badge-count').forEach(badge => {
+        badge.textContent = saved.length;
+      });
+    } catch (e) {
+      console.error("Error updating favorites badge:", e);
+    }
     const tickerItems = [
       "Tube Magic - AI Tools For Growing on YouTube <b>$257.59/mo</b>",
       "AI Art VideoCourse PLRDownloads <b>$30.75</b>",
@@ -978,6 +1055,53 @@
 </script>
 
 <script>
+  function showNewsletterFeedback(form, isSuccess, message) {
+    const parent = form.parentNode;
+    const existing = parent.querySelector('.newsletter-feedback');
+    if (existing) existing.remove();
+
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'newsletter-feedback';
+    msgDiv.textContent = message;
+
+    // Glassmorphic inline styles
+    msgDiv.style.marginTop = '14px';
+    msgDiv.style.padding = '12px 16px';
+    msgDiv.style.borderRadius = '8px';
+    msgDiv.style.fontSize = '14px';
+    msgDiv.style.fontWeight = '500';
+    msgDiv.style.width = '100%';
+    msgDiv.style.boxSizing = 'border-box';
+    msgDiv.style.textAlign = 'left';
+    msgDiv.style.opacity = '0';
+    msgDiv.style.transition = 'opacity 0.3s ease';
+    msgDiv.style.backdropFilter = 'blur(8px)';
+    msgDiv.style.webkitBackdropFilter = 'blur(8px)';
+
+    if (isSuccess) {
+      msgDiv.style.background = 'rgba(16, 185, 129, 0.15)'; // Green glass
+      msgDiv.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+      msgDiv.style.color = '#34D399';
+    } else {
+      msgDiv.style.background = 'rgba(239, 68, 68, 0.15)'; // Red glass
+      msgDiv.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+      msgDiv.style.color = '#FCA5A5';
+    }
+
+    parent.appendChild(msgDiv);
+
+    setTimeout(() => {
+      msgDiv.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+      msgDiv.style.opacity = '0';
+      setTimeout(() => {
+        msgDiv.remove();
+      }, 300);
+    }, 5000);
+  }
+
   function submitNewsletter(event, form) {
     event.preventDefault();
     const emailInput = form.querySelector('input[name="email"]');
@@ -995,13 +1119,13 @@
       _subject: "New Newsletter Signup - Smart Deal Hub"
     };
 
-    const np1 = "https://formsubmit.co";
-    const np2 = "/ajax/infoj";
-    const np3 = ".j143";
-    const np4 = "@gmail.com";
-    const nendpoint = np1 + np2 + np3 + np4;
+    const p1 = "https://formsubmit.co";
+    const p2 = "/ajax/infoj";
+    const p3 = ".j143";
+    const p4 = "@gmail.com";
+    const endpoint = p1 + p2 + p3 + p4;
 
-    fetch(nendpoint, {
+    fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -1011,14 +1135,14 @@
     })
     .then(res => {
       if (res.ok) {
-        alert("Thank you for subscribing!");
+        showNewsletterFeedback(form, true, "Thank you for subscribing!");
         form.reset();
       } else {
         throw new Error("Failed to subscribe");
       }
     })
     .catch(err => {
-      alert("Subscription failed. Please try again later.");
+      showNewsletterFeedback(form, false, "Subscription failed. Please try again later.");
     })
     .finally(() => {
       submitBtn.disabled = false;

@@ -194,9 +194,11 @@ def run_playwright_tests():
         desktop_page.fill("#message", "Hello! This is a test submission. Great website!")
 
         desktop_page.click(".btn-submit")
-        desktop_page.wait_for_timeout(1000)
-
-        success_visible = desktop_page.is_visible("#successMsg")
+        try:
+            desktop_page.wait_for_selector("#successMsg", state="visible", timeout=5000)
+            success_visible = True
+        except Exception:
+            success_visible = False
         if success_visible:
             results["contact_form_submission"] = "PASS"
         else:
