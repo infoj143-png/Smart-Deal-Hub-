@@ -715,7 +715,7 @@
 
       <div class="content-block">
         <h2>9. Contact Us</h2>
-        <p>If you have any questions or suggestions about our Terms of Use, do not hesitate to contact us at <a href="mailto:infoj.j143@gmail.com" style="color: var(--purple); font-weight: 700; text-decoration: underline;">infoj.j143@gmail.com</a>.</p>
+        <p>If you have any questions or suggestions about our Terms of Use, do not hesitate to contact us at <span class="obf-email" style="cursor: pointer; color: var(--purple); font-weight: 700; text-decoration: underline;" onclick="window.location.href='mailto:' + ['infoj','j143'].join('.') + '@' + 'gmail.com'; event.stopPropagation();"><script>document.write(['infoj','j143'].join('.') + '@' + 'gmail.com');</script></span>.</p>
       </div>
 
     </div>
@@ -812,7 +812,13 @@
       _subject: "New Newsletter Signup - Smart Deal Hub"
     };
 
-    fetch("https://formsubmit.co/ajax/infoj.j143@gmail.com", {
+    const p1 = "https://formsubmit.co";
+    const p2 = "/ajax/infoj";
+    const p3 = ".j143";
+    const p4 = "@gmail.com";
+    const endpoint = p1 + p2 + p3 + p4;
+
+    fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -829,7 +835,7 @@
       }
     })
     .catch(err => {
-      alert("Subscription failed. Please try again or contact us at infoj.j143@gmail.com.");
+      alert("Subscription failed. Please try again later.");
     })
     .finally(() => {
       submitBtn.disabled = false;

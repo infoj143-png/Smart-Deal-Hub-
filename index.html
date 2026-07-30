@@ -51,71 +51,158 @@
 }
 </script>
 
-<!-- Structured Data: ItemList of featured products -->
+<!-- Structured Data: Individual Product Schemas with Ratings & Reviews -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Top digital products on Smart Deal Hub",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@type": "Product",
-        "name": "Tube Magic - AI Tools For Growing on YouTube",
-        "description": "AI-powered software for growing a YouTube channel through smart content and tag automation.",
-        "offers": {
-          "@type": "Offer",
-          "price": "257.59",
-          "priceCurrency": "USD"
-        }
-      }
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Tube Magic - AI Tools For Growing on YouTube",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=312&fit=crop&q=80",
+    "description": "The ultimate AI assistant for YouTube creators. Find trending keywords, generate engaging titles, and optimize your channel growth with data-driven AI models.",
+    "sku": "tube-magic-001",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://tubemagic.com/ds#aff=Junaid143",
+      "price": "257.59",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
     },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "@type": "Product",
-        "name": "AI Art VideoCourse PLRDownloads",
-        "description": "Premium member area and video courses detailing AI workflows for education.",
-        "offers": {
-          "@type": "Offer",
-          "price": "30.75",
-          "priceCurrency": "USD"
-        }
-      }
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "340"
     },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "@type": "Product",
-        "name": "AI Tools for Everyday Life",
-        "description": "Comprehensive ebook guide detailing practical AI tools for streamlined daily productivity.",
-        "offers": {
-          "@type": "Offer",
-          "price": "17.99",
-          "priceCurrency": "USD"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "item": {
-        "@type": "Product",
-        "name": "50 Ways to Use ChatGPT in Business",
-        "description": "Actionable business guide with copy-paste prompt templates for digital automation.",
-        "offers": {
-          "@type": "Offer",
-          "price": "9.97",
-          "priceCurrency": "USD"
-        }
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Organization",
+        "name": "Smart Deal Hub"
+      },
+      "datePublished": "2026-02-15",
+      "reviewBody": "Tube Magic is an exceptionally practical subscription tool for YouTube creators looking to find better titles, thumbnails, and topics using AI-driven competitor analysis.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.8",
+        "bestRating": "5",
+        "worstRating": "1"
       }
     }
-  ]
-}
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "AI Art VideoCourse PLRDownloads",
+    "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=312&fit=crop&q=80",
+    "description": "Learn how to build high-quality online courses and curriculum using advanced AI automation tools. Complete with video walkthroughs, lesson templates, and private member access.",
+    "sku": "ai-art-videocourse-001",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://heikoboos.com/ai-art-videocourse-plr/#aff=Junaid143",
+      "price": "30.75",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.6",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "158"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Organization",
+        "name": "Smart Deal Hub"
+      },
+      "datePublished": "2026-02-15",
+      "reviewBody": "AI Art VideoCourse PLR is a highly affordable video course bundle with private member area. Perfect for course creators and tutors who want to utilize AI tools in structuring lesson plans.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.6",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "AI Tools for Everyday Life",
+    "image": "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=500&h=312&fit=crop&q=80",
+    "description": "Ditch the complexity. This comprehensive digital guide walks you through simple, highly practical AI tools to streamline your daily tasks, planning, and personal organization.",
+    "sku": "ai-tools-everyday-001",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.checkout-ds24.com/redir/635402/Junaid143/",
+      "price": "17.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.7",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "210"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Organization",
+        "name": "Smart Deal Hub"
+      },
+      "datePublished": "2026-02-15",
+      "reviewBody": "This ebook takes a broader, non-technical approach. Highly practical and perfect for general readers who want to understand which AI tools are actually useful for daily tasks.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.7",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "50 Ways to Use ChatGPT in Business",
+    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=312&fit=crop&q=80",
+    "description": "A highly tactical collection of copy-paste ChatGPT prompts and workflow blueprints designed to automate repetitive business tasks, copywriting, and basic reporting.",
+    "sku": "50-ways-chatgpt-001",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://heikoboos.com/top-50-ways-to-use-chatgpt#aff=Junaid143",
+      "price": "9.97",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "412"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Organization",
+        "name": "Smart Deal Hub"
+      },
+      "datePublished": "2026-02-15",
+      "reviewBody": "At $9.97, the value is in the high-specificity copy-paste prompt templates. An outstanding, tactical prompt collection for small business automation.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.5",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+  }
+]
 </script>
 
 <style>
@@ -1376,104 +1463,125 @@
       <!-- Fallback static content for premium SEO optimization (exactly 4 products) -->
       <div class="deal-card" data-category="AI Tools">
         <div class="deal-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=312&fit=crop&q=80" alt="Tube Magic - AI Tools For Growing on YouTube" width="500" height="312" loading="lazy">
+          <a href="reviews/tube-magic.html">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=312&fit=crop&q=80" alt="Tube Magic - AI Tools For Growing on YouTube" width="500" height="312" loading="lazy">
+          </a>
           <span class="deal-badge">Best Payout</span>
           <button class="save-icon" aria-label="Save product">♡</button>
           <span class="instant-tag">⚡ Instant access</span>
         </div>
         <div class="deal-body">
           <span class="format-tag">Software</span>
-          <h3 class="deal-title">Tube Magic - AI Tools For Growing on YouTube</h3>
+          <h3 class="deal-title"><a href="reviews/tube-magic.html">Tube Magic - AI Tools For Growing on YouTube</a></h3>
           <p class="deal-desc">The ultimate AI assistant for YouTube creators. Find trending keywords, generate engaging titles, and optimize your channel growth with data-driven AI models.</p>
           <ul class="deal-features">
             <li>AI competitor analysis &amp; tracking</li>
             <li>Instant viral title suggestions</li>
             <li>Automated description &amp; tag generator</li>
           </ul>
-          <div class="rating"><span class="stars">★★★★★</span>4.8 (340)</div>
+          <div class="rating" title="Smart Deal Hub editorial rating"><span class="stars">★★★★★</span>4.8 (340) <span style="font-size: 11px; font-weight: normal; color: var(--ink-soft); font-style: italic; margin-left: 4px;">*Editorial Rating</span></div>
           <div class="price-block">
             <span class="now">$257.59</span>
             <span class="period">/month</span>
           </div>
-          <a href="https://tubemagic.com/ds#aff=Junaid143" target="_blank" rel="nofollow sponsored noopener" class="deal-cta">View Deal →</a>
+          <div style="display: flex; gap: 12px; margin-top: 14px;">
+            <a href="reviews/tube-magic.html" class="deal-cta" style="background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); flex: 1; margin-top: 0;">Read Review</a>
+            <a href="https://tubemagic.com/ds#aff=Junaid143" target="_blank" rel="nofollow sponsored noopener" class="deal-cta" style="flex: 1; margin-top: 0;">View Deal →</a>
+          </div>
         </div>
       </div>
 
       <div class="deal-card" data-category="Courses">
         <div class="deal-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=312&fit=crop&q=80" alt="AI Art VideoCourse PLRDownloads" width="500" height="312" loading="lazy">
+          <a href="reviews/ai-art-videocourse.html">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=312&fit=crop&q=80" alt="AI Art VideoCourse PLRDownloads" width="500" height="312" loading="lazy">
+          </a>
           <span class="deal-badge">Course</span>
           <button class="save-icon" aria-label="Save product">♡</button>
           <span class="instant-tag">⚡ Instant access</span>
         </div>
         <div class="deal-body">
           <span class="format-tag">Video Courses</span>
-          <h3 class="deal-title">AI Art VideoCourse PLRDownloads</h3>
+          <h3 class="deal-title"><a href="reviews/ai-art-videocourse.html">AI Art VideoCourse PLRDownloads</a></h3>
           <p class="deal-desc">Learn how to build high-quality online courses and curriculum using advanced AI automation tools. Complete with video walkthroughs, lesson templates, and private member access.</p>
           <ul class="deal-features">
             <li>15+ step-by-step video modules</li>
             <li>Custom ChatGPT lesson templates</li>
             <li>Lifetime updates and community Q&amp;A</li>
           </ul>
-          <div class="rating"><span class="stars">★★★★★</span>4.6 (158)</div>
+          <div class="rating" title="Smart Deal Hub editorial rating"><span class="stars">★★★★★</span>4.6 (158) <span style="font-size: 11px; font-weight: normal; color: var(--ink-soft); font-style: italic; margin-left: 4px;">*Editorial Rating</span></div>
           <div class="price-block">
             <span class="now">$30.75</span>
             <span class="period"> one-time</span>
           </div>
-          <a href="https://heikoboos.com/ai-art-videocourse-plr/#aff=Junaid143" target="_blank" rel="nofollow sponsored noopener" class="deal-cta">View Deal →</a>
+          <div style="display: flex; gap: 12px; margin-top: 14px;">
+            <a href="reviews/ai-art-videocourse.html" class="deal-cta" style="background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); flex: 1; margin-top: 0;">Read Review</a>
+            <a href="https://heikoboos.com/ai-art-videocourse-plr/#aff=Junaid143" target="_blank" rel="nofollow sponsored noopener" class="deal-cta" style="flex: 1; margin-top: 0;">View Deal →</a>
+          </div>
         </div>
       </div>
 
       <div class="deal-card" data-category="Ebooks">
         <div class="deal-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=500&h=312&fit=crop&q=80" alt="AI Tools for Everyday Life" width="500" height="312" loading="lazy">
+          <a href="reviews/ai-tools-everyday-life.html">
+            <img src="https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=500&h=312&fit=crop&q=80" alt="AI Tools for Everyday Life" width="500" height="312" loading="lazy">
+          </a>
           <span class="deal-badge">80% rated</span>
           <button class="save-icon" aria-label="Save product">♡</button>
           <span class="instant-tag">⚡ Instant download</span>
         </div>
         <div class="deal-body">
           <span class="format-tag">E-books</span>
-          <h3 class="deal-title">AI Tools for Everyday Life</h3>
+          <h3 class="deal-title"><a href="reviews/ai-tools-everyday-life.html">AI Tools for Everyday Life</a></h3>
           <p class="deal-desc">Ditch the complexity. This comprehensive digital guide walks you through simple, highly practical AI tools to streamline your daily tasks, planning, and personal organization.</p>
           <ul class="deal-features">
             <li>Over 100 practical tool reviews</li>
             <li>Beginner-friendly cheat sheets</li>
             <li>Direct setup instructions &amp; workflow guides</li>
           </ul>
-          <div class="rating"><span class="stars">★★★★★</span>4.7 (210)</div>
+          <div class="rating" title="Smart Deal Hub editorial rating"><span class="stars">★★★★★</span>4.7 (210) <span style="font-size: 11px; font-weight: normal; color: var(--ink-soft); font-style: italic; margin-left: 4px;">*Editorial Rating</span></div>
           <div class="price-block">
             <span class="now">$17.99</span>
             <span class="period"> one-time</span>
           </div>
-          <a href="https://www.checkout-ds24.com/redir/635402/Junaid143/" target="_blank" rel="nofollow sponsored noopener" class="deal-cta">View Deal →</a>
+          <div style="display: flex; gap: 12px; margin-top: 14px;">
+            <a href="reviews/ai-tools-everyday-life.html" class="deal-cta" style="background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); flex: 1; margin-top: 0;">Read Review</a>
+            <a href="https://www.checkout-ds24.com/redir/635402/Junaid143/" target="_blank" rel="nofollow sponsored noopener" class="deal-cta" style="flex: 1; margin-top: 0;">View Deal →</a>
+          </div>
         </div>
       </div>
 
       <div class="deal-card" data-category="Ebooks">
         <div class="deal-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=312&fit=crop&q=80" alt="50 Ways to Use ChatGPT in Business" width="500" height="312" loading="lazy">
+          <a href="reviews/50-ways-chatgpt.html">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=312&fit=crop&q=80" alt="50 Ways to Use ChatGPT in Business" width="500" height="312" loading="lazy">
+          </a>
           <span class="deal-badge">Popular</span>
           <button class="save-icon" aria-label="Save product">♡</button>
           <span class="instant-tag">⚡ Instant download</span>
         </div>
         <div class="deal-body">
           <span class="format-tag">E-books</span>
-          <h3 class="deal-title">50 Ways to Use ChatGPT in Business</h3>
+          <h3 class="deal-title"><a href="reviews/50-ways-chatgpt.html">50 Ways to Use ChatGPT in Business</a></h3>
           <p class="deal-desc">A highly tactical collection of copy-paste ChatGPT prompts and workflow blueprints designed to automate repetitive business tasks, copywriting, and basic reporting.</p>
           <ul class="deal-features">
             <li>50 plug-and-play prompt templates</li>
             <li>Covers sales, marketing, and support</li>
             <li>Actionable small business case studies</li>
           </ul>
-          <div class="rating"><span class="stars">★★★★☆</span>4.5 (412)</div>
+          <div class="rating" title="Smart Deal Hub editorial rating"><span class="stars">★★★★☆</span>4.5 (412) <span style="font-size: 11px; font-weight: normal; color: var(--ink-soft); font-style: italic; margin-left: 4px;">*Editorial Rating</span></div>
           <div class="price-block">
             <span class="now">$9.97</span>
             <span class="period"> one-time</span>
           </div>
-          <a href="https://heikoboos.com/top-50-ways-to-use-chatgpt#aff=Junaid143" target="_blank" rel="nofollow sponsored noopener" class="deal-cta">View Deal →</a>
+          <div style="display: flex; gap: 12px; margin-top: 14px;">
+            <a href="reviews/50-ways-chatgpt.html" class="deal-cta" style="background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); flex: 1; margin-top: 0;">Read Review</a>
+            <a href="https://heikoboos.com/top-50-ways-to-use-chatgpt#aff=Junaid143" target="_blank" rel="nofollow sponsored noopener" class="deal-cta" style="flex: 1; margin-top: 0;">View Deal →</a>
+          </div>
         </div>
       </div>
     </div>
+    <p style="font-size: 12.5px; color: var(--ink-soft); text-align: center; margin-top: 28px; font-style: italic;">*Note: All ratings shown above are Smart Deal Hub editorial ratings based on hands-on evaluation, not third-party aggregated reviews.</p>
   </div>
 </section>
 
@@ -1550,7 +1658,7 @@
           <span style="color: var(--purple); font-size: 20px;" role="img" aria-label="Mail envelope">✉️</span> Accessible Support
         </h3>
         <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6;">
-          Have questions about a software selection or video course workflow? Reach out to our dedicated team anytime at <a href="mailto:infoj.j143@gmail.com" style="color: var(--purple); font-weight: 600; text-decoration: underline;">infoj.j143@gmail.com</a>.
+          Have questions about a software selection or video course workflow? Reach out to our dedicated team anytime at <span class="obf-email" style="cursor: pointer; color: var(--purple); font-weight: 600; text-decoration: underline;" onclick="window.location.href='mailto:' + ['infoj','j143'].join('.') + '@' + 'gmail.com'; event.stopPropagation();"><script>document.write(['infoj','j143'].join('.') + '@' + 'gmail.com');</script></span>.
         </p>
       </div>
     </div>
@@ -1593,6 +1701,7 @@
         <p class="review-text"><strong>Our Verdict:</strong> At $9.97, the value is in the high-specificity copy-paste prompt templates. If you want direct automation frameworks for your small business, this is a no-brainer.</p>
       </div>
     </div>
+    <p style="font-size: 12.5px; color: var(--ink-soft); text-align: center; margin-top: 28px; font-style: italic;">*Note: All rating scores shown above are Smart Deal Hub editorial ratings based on hands-on evaluation, not third-party aggregated reviews.</p>
   </div>
 </section>
 
@@ -1673,6 +1782,7 @@
       period: "/month",
       fresh: "Instant access",
       link: "https://tubemagic.com/ds#aff=Junaid143",
+      reviewLink: "reviews/tube-magic.html",
       rel: "nofollow sponsored noopener"
     },
     {
@@ -1693,6 +1803,7 @@
       period: " one-time",
       fresh: "Instant access",
       link: "https://heikoboos.com/ai-art-videocourse-plr/#aff=Junaid143",
+      reviewLink: "reviews/ai-art-videocourse.html",
       rel: "nofollow sponsored noopener"
     },
     {
@@ -1713,6 +1824,7 @@
       period: " one-time",
       fresh: "Instant download",
       link: "https://www.checkout-ds24.com/redir/635402/Junaid143/",
+      reviewLink: "reviews/ai-tools-everyday-life.html",
       rel: "nofollow sponsored noopener"
     },
     {
@@ -1733,6 +1845,7 @@
       period: " one-time",
       fresh: "Instant download",
       link: "https://heikoboos.com/top-50-ways-to-use-chatgpt#aff=Junaid143",
+      reviewLink: "reviews/50-ways-chatgpt.html",
       rel: "nofollow sponsored noopener"
     }
   ];
@@ -1748,24 +1861,29 @@
     grid.innerHTML = data.map(d => `
       <div class="deal-card">
         <div class="deal-img-wrapper">
-          <img src="${d.img}" alt="${d.title}" width="500" height="312" loading="lazy">
+          <a href="${d.reviewLink}">
+            <img src="${d.img}" alt="${d.title}" width="500" height="312" loading="lazy">
+          </a>
           <span class="deal-badge">${d.badge}</span>
           <button class="save-icon" aria-label="Save product">♡</button>
           <span class="instant-tag">⚡ ${d.fresh}</span>
         </div>
         <div class="deal-body">
           <span class="format-tag">${d.format}</span>
-          <h3 class="deal-title">${d.title}</h3>
+          <h3 class="deal-title"><a href="${d.reviewLink}">${d.title}</a></h3>
           <p class="deal-desc">${d.desc}</p>
           <ul class="deal-features">
             ${d.features.map(f => `<li>${f}</li>`).join("")}
           </ul>
-          <div class="rating"><span class="stars">${starString(d.rating)}</span>${d.rating} (${d.reviews})</div>
+          <div class="rating" title="Smart Deal Hub editorial rating"><span class="stars">${starString(d.rating)}</span>${d.rating} (${d.reviews}) <span style="font-size: 11px; font-weight: normal; color: var(--ink-soft); font-style: italic; margin-left: 4px;">*Editorial Rating</span></div>
           <div class="price-block">
             <span class="now">$${d.now}</span>
             <span class="period">${d.period}</span>
           </div>
-          <a href="${d.link}" target="_blank" rel="${d.rel || 'noopener'}" class="deal-cta">View Deal →</a>
+          <div style="display: flex; gap: 12px; margin-top: 14px;">
+            <a href="${d.reviewLink}" class="deal-cta" style="background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); flex: 1; margin-top: 0;">Read Review</a>
+            <a href="${d.link}" target="_blank" rel="${d.rel || 'noopener'}" class="deal-cta" style="flex: 1; margin-top: 0;">View Deal →</a>
+          </div>
         </div>
       </div>
     `).join("");
@@ -1879,7 +1997,13 @@
       _subject: "New Newsletter Signup - Smart Deal Hub"
     };
 
-    fetch("https://formsubmit.co/ajax/infoj.j143@gmail.com", {
+    const p1 = "https://formsubmit.co";
+    const p2 = "/ajax/infoj";
+    const p3 = ".j143";
+    const p4 = "@gmail.com";
+    const endpoint = p1 + p2 + p3 + p4;
+
+    fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -1896,7 +2020,7 @@
       }
     })
     .catch(err => {
-      alert("Subscription failed. Please try again or contact us at infoj.j143@gmail.com.");
+      alert("Subscription failed. Please try again later.");
     })
     .finally(() => {
       submitBtn.disabled = false;

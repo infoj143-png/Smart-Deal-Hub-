@@ -46,8 +46,7 @@
   "mainEntity": {
     "@type": "Organization",
     "name": "Smart Deal Hub",
-    "url": "https://smart-deal-hub-phi.vercel.app/",
-    "email": "infoj.j143@gmail.com"
+    "url": "https://smart-deal-hub-phi.vercel.app/"
   }
 }
 </script>
@@ -787,7 +786,7 @@
         <p>Your email address will not be published. Required fields are marked *</p>
 
         <div id="errorMsg" style="display: none; background: #FDE8E8; border: 1px solid #F8B4B4; color: #9B1C1C; padding: 16px; border-radius: 8px; font-size: 14.5px; font-weight: 600; margin-bottom: 20px;">
-          ⚠️ Failed to send message. Please try again, or email us directly at <a href="mailto:infoj.j143@gmail.com" style="text-decoration: underline; color: inherit;">infoj.j143@gmail.com</a>.
+          ⚠️ Failed to send message. Please try again, or email us directly at <span class="obf-email" style="cursor: pointer; color: inherit; text-decoration: underline;" onclick="window.location.href='mailto:' + ['infoj','j143'].join('.') + '@' + 'gmail.com'; event.stopPropagation();"><script>document.write(['infoj','j143'].join('.') + '@' + 'gmail.com');</script></span>.
         </div>
 
         <form id="contactForm" onsubmit="handleFormSubmit(event)">
@@ -817,12 +816,12 @@
         <div class="info-card">
           <h3>✉ Direct Contact</h3>
           <p>Prefer direct emailing? You can reach our editorial team or support desk at:</p>
-          <p><a href="mailto:infoj.j143@gmail.com" style="color: var(--purple); font-size: 15px; font-weight: 700; text-decoration: underline;">infoj.j143@gmail.com</a></p>
+          <p><span class="obf-email" style="cursor: pointer; color: var(--purple); font-size: 15px; font-weight: 700; text-decoration: underline;" onclick="window.location.href='mailto:' + ['infoj','j143'].join('.') + '@' + 'gmail.com'; event.stopPropagation();"><script>document.write(['infoj','j143'].join('.') + '@' + 'gmail.com');</script></span></p>
         </div>
 
         <div class="info-card">
           <h3>💼 Business Inquiries & Partnerships</h3>
-          <p>For brand partnerships, sponsorships, advertising inquiries, or digital product review requests, please email our marketing lead directly at <a href="mailto:infoj.j143@gmail.com" style="color: var(--purple); font-weight: 700;">infoj.j143@gmail.com</a>. Please provide detailed information about your software, course, or service so our review team can evaluate it effectively.</p>
+          <p>For brand partnerships, sponsorships, advertising inquiries, or digital product review requests, please email our marketing lead directly at <span class="obf-email" style="cursor: pointer; color: var(--purple); font-weight: 700; text-decoration: underline;" onclick="window.location.href='mailto:' + ['infoj','j143'].join('.') + '@' + 'gmail.com'; event.stopPropagation();"><script>document.write(['infoj','j143'].join('.') + '@' + 'gmail.com');</script></span>. Please provide detailed information about your software, course, or service so our review team can evaluate it effectively.</p>
         </div>
 
         <div class="info-card">
@@ -931,7 +930,13 @@
       _subject: "New Contact Form Message - Smart Deal Hub"
     };
 
-    fetch("https://formsubmit.co/ajax/infoj.j143@gmail.com", {
+    const p1 = "https://formsubmit.co";
+    const p2 = "/ajax/infoj";
+    const p3 = ".j143";
+    const p4 = "@gmail.com";
+    const endpoint = p1 + p2 + p3 + p4;
+
+    fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -990,7 +995,13 @@
       _subject: "New Newsletter Signup - Smart Deal Hub"
     };
 
-    fetch("https://formsubmit.co/ajax/infoj.j143@gmail.com", {
+    const np1 = "https://formsubmit.co";
+    const np2 = "/ajax/infoj";
+    const np3 = ".j143";
+    const np4 = "@gmail.com";
+    const nendpoint = np1 + np2 + np3 + np4;
+
+    fetch(nendpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -1007,7 +1018,7 @@
       }
     })
     .catch(err => {
-      alert("Subscription failed. Please try again or contact us at infoj.j143@gmail.com.");
+      alert("Subscription failed. Please try again later.");
     })
     .finally(() => {
       submitBtn.disabled = false;
