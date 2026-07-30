@@ -773,8 +773,8 @@
       <h3>Get the best new AI tools before everyone else</h3>
       <p>One email a week, only the products worth your money. Unsubscribe anytime.</p>
     </div>
-    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
-      <input type="email" placeholder="you@example.com" aria-label="Email address for newsletter" required>
+    <form class="newsletter-form" onsubmit="submitNewsletter(event, this);">
+      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address for newsletter" required>
       <button type="submit">Get Updates</button>
     </form>
   </div>
@@ -838,6 +838,50 @@
       track.innerHTML = [...tickerItems, ...tickerItems, ...tickerItems].map(t => `<span>${t}</span>`).join("");
     }
   });
+</script>
+
+<script>
+  function submitNewsletter(event, form) {
+    event.preventDefault();
+    const emailInput = form.querySelector('input[name="email"]');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (!emailInput || !submitBtn) return;
+
+    const emailVal = emailInput.value;
+    const originalText = submitBtn.textContent;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    const data = {
+      email: emailVal,
+      _subject: "New Newsletter Signup - Smart Deal Hub"
+    };
+
+    fetch("https://formsubmit.co/ajax/infoj.j143@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if (res.ok) {
+        alert("Thank you for subscribing!");
+        form.reset();
+      } else {
+        throw new Error("Failed to subscribe");
+      }
+    })
+    .catch(err => {
+      alert("Subscription failed. Please try again or contact us at infoj.j143@gmail.com.");
+    })
+    .finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    });
+  }
 </script>
 
 </body>

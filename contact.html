@@ -786,22 +786,26 @@
         <h2>Send Us a Message</h2>
         <p>Your email address will not be published. Required fields are marked *</p>
 
+        <div id="errorMsg" style="display: none; background: #FDE8E8; border: 1px solid #F8B4B4; color: #9B1C1C; padding: 16px; border-radius: 8px; font-size: 14.5px; font-weight: 600; margin-bottom: 20px;">
+          ⚠️ Failed to send message. Please try again, or email us directly at <a href="mailto:infoj.j143@gmail.com" style="text-decoration: underline; color: inherit;">infoj.j143@gmail.com</a>.
+        </div>
+
         <form id="contactForm" onsubmit="handleFormSubmit(event)">
           <div class="form-group">
             <label for="name">Your Name *</label>
-            <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+            <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
           </div>
           <div class="form-group">
             <label for="email">Your Email *</label>
-            <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
+            <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
           </div>
           <div class="form-group">
             <label for="subject">Subject *</label>
-            <input type="text" id="subject" class="form-control" placeholder="Product Submission / General Question" required>
+            <input type="text" id="subject" name="subject" class="form-control" placeholder="Product Submission / General Question" required>
           </div>
           <div class="form-group">
             <label for="message">Message *</label>
-            <textarea id="message" class="form-control" placeholder="Tell us how we can help..." required></textarea>
+            <textarea id="message" name="message" class="form-control" placeholder="Tell us how we can help..." required></textarea>
           </div>
 
           <button type="submit" class="btn-submit">Send Message</button>
@@ -847,8 +851,8 @@
       <h3>Get the best new AI tools before everyone else</h3>
       <p>One email a week, only the products worth your money. Unsubscribe anytime.</p>
     </div>
-    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
-      <input type="email" placeholder="you@example.com" aria-label="Email address for newsletter" required>
+    <form class="newsletter-form" onsubmit="submitNewsletter(event, this);">
+      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address for newsletter" required>
       <button type="submit">Get Updates</button>
     </form>
   </div>
@@ -902,9 +906,56 @@
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    document.getElementById("successMsg").style.display = "block";
-    document.getElementById("contactForm").reset();
-    window.scrollTo({ top: 150, behavior: "smooth" });
+    const form = event.target;
+    const submitBtn = form.querySelector('.btn-submit');
+    const successMsg = document.getElementById("successMsg");
+    const errorMsg = document.getElementById("errorMsg");
+
+    successMsg.style.display = "none";
+    errorMsg.style.display = "none";
+
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    const nameVal = document.getElementById("name").value;
+    const emailVal = document.getElementById("email").value;
+    const subjectVal = document.getElementById("subject").value;
+    const messageVal = document.getElementById("message").value;
+
+    const data = {
+      name: nameVal,
+      email: emailVal,
+      subject: subjectVal,
+      message: messageVal,
+      _subject: "New Contact Form Message - Smart Deal Hub"
+    };
+
+    fetch("https://formsubmit.co/ajax/infoj.j143@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if (res.ok) {
+        successMsg.style.display = "block";
+        form.reset();
+        window.scrollTo({ top: 150, behavior: "smooth" });
+      } else {
+        throw new Error("Server responded with error");
+      }
+    })
+    .catch(err => {
+      errorMsg.style.display = "block";
+      window.scrollTo({ top: 150, behavior: "smooth" });
+    })
+    .finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    });
   }
 
   window.addEventListener("DOMContentLoaded", () => {
@@ -919,6 +970,50 @@
       track.innerHTML = [...tickerItems, ...tickerItems, ...tickerItems].map(t => `<span>${t}</span>`).join("");
     }
   });
+</script>
+
+<script>
+  function submitNewsletter(event, form) {
+    event.preventDefault();
+    const emailInput = form.querySelector('input[name="email"]');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (!emailInput || !submitBtn) return;
+
+    const emailVal = emailInput.value;
+    const originalText = submitBtn.textContent;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    const data = {
+      email: emailVal,
+      _subject: "New Newsletter Signup - Smart Deal Hub"
+    };
+
+    fetch("https://formsubmit.co/ajax/infoj.j143@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if (res.ok) {
+        alert("Thank you for subscribing!");
+        form.reset();
+      } else {
+        throw new Error("Failed to subscribe");
+      }
+    })
+    .catch(err => {
+      alert("Subscription failed. Please try again or contact us at infoj.j143@gmail.com.");
+    })
+    .finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    });
+  }
 </script>
 
 </body>
