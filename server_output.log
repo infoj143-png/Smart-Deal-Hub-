@@ -1,10 +1,6 @@
-127.0.0.1 - - [30/Jul/2026 11:11:53] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [30/Jul/2026 11:11:59] "GET /about.html HTTP/1.1" 200 -
-127.0.0.1 - - [30/Jul/2026 11:12:00] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [30/Jul/2026 11:12:02] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [30/Jul/2026 11:12:05] "GET /contact.html HTTP/1.1" 200 -
-127.0.0.1 - - [30/Jul/2026 11:32:40] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [30/Jul/2026 11:32:44] "GET /about.html HTTP/1.1" 200 -
-127.0.0.1 - - [30/Jul/2026 11:32:45] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [30/Jul/2026 11:32:48] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [30/Jul/2026 11:32:51] "GET /contact.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 16:55:13] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 16:55:19] "GET /about.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 16:55:20] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 16:55:23] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 16:55:25] "GET /contact.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 16:56:14] "GET /reviews/tube-magic.html HTTP/1.1" 200 -

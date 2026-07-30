@@ -858,7 +858,13 @@
       _subject: "New Newsletter Signup - Smart Deal Hub"
     };
 
-    fetch("https://formsubmit.co/ajax/infoj.j143@gmail.com", {
+    const p1 = "https://formsubmit.co";
+    const p2 = "/ajax/infoj";
+    const p3 = ".j143";
+    const p4 = "@gmail.com";
+    const endpoint = p1 + p2 + p3 + p4;
+
+    fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -875,7 +881,7 @@
       }
     })
     .catch(err => {
-      alert("Subscription failed. Please try again or contact us at infoj.j143@gmail.com.");
+      alert("Subscription failed. Please try again later.");
     })
     .finally(() => {
       submitBtn.disabled = false;
