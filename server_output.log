@@ -1,0 +1,5 @@
+127.0.0.1 - - [30/Jul/2026 07:39:02] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 07:39:08] "GET /about.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 07:39:09] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 07:39:11] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 07:39:14] "GET /contact.html HTTP/1.1" 200 -
