@@ -480,6 +480,41 @@
     }
   }
 </style>
+<!-- Google Analytics 4 (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XXXXXXXXXX');
+
+  // Outbound Affiliate Link Tracking
+  document.addEventListener('click', function(e) {
+    const anchor = e.target.closest('a');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href') || '';
+    const isExternal = href.startsWith('http') && !href.includes(window.location.hostname);
+    if (isExternal) {
+      let productName = '';
+      const card = anchor.closest('.deal-card');
+      if (card) {
+        const titleEl = card.querySelector('.deal-title a') || card.querySelector('.deal-title') || card.querySelector('.fc-title');
+        if (titleEl) productName = titleEl.textContent.trim();
+      } else {
+        const h1 = document.querySelector('h1');
+        if (h1) productName = h1.textContent.trim();
+      }
+      if (!productName) {
+        productName = anchor.textContent.trim() || 'Unknown Product';
+      }
+      gtag('event', 'affiliate_click', {
+        'product_name': productName,
+        'destination_url': href
+      });
+    }
+  });
+</script>
 </head>
 <body>
 
@@ -581,6 +616,14 @@
   }
 
   window.addEventListener("DOMContentLoaded", () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('savedProducts') || '[]');
+      document.querySelectorAll('.badge-count').forEach(badge => {
+        badge.textContent = saved.length;
+      });
+    } catch (e) {
+      console.error("Error updating favorites badge:", e);
+    }
     const tickerItems = [
       "Tube Magic - AI Tools For Growing on YouTube <b>$257.59/mo</b>",
       "AI Art VideoCourse PLRDownloads <b>$30.75</b>",

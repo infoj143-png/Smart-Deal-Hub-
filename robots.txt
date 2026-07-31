@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /verification/
 
 Sitemap: https://smart-deal-hub-phi.vercel.app/sitemap.xml

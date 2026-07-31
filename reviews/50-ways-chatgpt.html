@@ -587,6 +587,29 @@
     background: var(--purple-light);
   }
 
+  .save-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .save-icon:hover {
+    color: #EF4444;
+    border-color: #FCA5A5;
+    background: #FEF2F2;
+  }
+
+  .save-icon.active {
+    color: #EF4444;
+    border-color: #EF4444;
+    background: #FEF2F2;
+  }
+
   .rating-footnote {
     font-size: 12px;
     color: var(--ink-soft);
@@ -805,6 +828,41 @@
     }
   }
 </style>
+<!-- Google Analytics 4 (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XXXXXXXXXX');
+
+  // Outbound Affiliate Link Tracking
+  document.addEventListener('click', function(e) {
+    const anchor = e.target.closest('a');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href') || '';
+    const isExternal = href.startsWith('http') && !href.includes(window.location.hostname);
+    if (isExternal) {
+      let productName = '';
+      const card = anchor.closest('.deal-card');
+      if (card) {
+        const titleEl = card.querySelector('.deal-title a') || card.querySelector('.deal-title') || card.querySelector('.fc-title');
+        if (titleEl) productName = titleEl.textContent.trim();
+      } else {
+        const h1 = document.querySelector('h1');
+        if (h1) productName = h1.textContent.trim();
+      }
+      if (!productName) {
+        productName = anchor.textContent.trim() || 'Unknown Product';
+      }
+      gtag('event', 'affiliate_click', {
+        'product_name': productName,
+        'destination_url': href
+      });
+    }
+  });
+</script>
 </head>
 <body>
 
@@ -902,7 +960,10 @@
         </ul>
 
         <div class="sidebar-cta">
-          <a href="https://heikoboos.com/top-50-ways-to-use-chatgpt#aff=Junaid143" target="_blank" rel="nofollow sponsored noopener" class="btn-deal">View Deal →</a>
+          <div style="display: flex; gap: 10px;">
+            <a href="https://heikoboos.com/top-50-ways-to-use-chatgpt#aff=Junaid143" target="_blank" rel="nofollow sponsored noopener" class="btn-deal" style="flex: 1;">View Deal →</a>
+            <button class="save-icon" aria-label="Save product" data-product-id="50-ways-chatgpt" style="width: 56px; height: 56px; border-radius: 8px; font-size: 22px;">♡</button>
+          </div>
           <a href="../index.html" class="btn-back">← Back to Hub</a>
         </div>
 
@@ -973,6 +1034,59 @@
   }
 
   window.addEventListener("DOMContentLoaded", () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('savedProducts') || '[]');
+      document.querySelectorAll('.badge-count').forEach(badge => {
+        badge.textContent = saved.length;
+      });
+
+      // Update save button state
+      const saveBtn = document.querySelector('.save-icon');
+      if (saveBtn) {
+        const productId = saveBtn.getAttribute('data-product-id');
+        if (saved.includes(productId)) {
+          saveBtn.classList.add('active');
+          saveBtn.textContent = '♥';
+        } else {
+          saveBtn.classList.remove('active');
+          saveBtn.textContent = '♡';
+        }
+      }
+    } catch (e) {
+      console.error("Error updating favorites badge:", e);
+    }
+
+    // Add click handler for save button
+    const saveBtn = document.querySelector('.save-icon');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const productId = saveBtn.getAttribute('data-product-id');
+        if (!productId) return;
+
+        let saved = [];
+        try {
+          saved = JSON.parse(localStorage.getItem('savedProducts') || '[]');
+        } catch (err) {}
+
+        const idx = saved.indexOf(productId);
+        if (idx > -1) {
+          saved.splice(idx, 1);
+          saveBtn.classList.remove('active');
+          saveBtn.textContent = '♡';
+        } else {
+          saved.push(productId);
+          saveBtn.classList.add('active');
+          saveBtn.textContent = '♥';
+        }
+
+        localStorage.setItem('savedProducts', JSON.stringify(saved));
+        document.querySelectorAll('.badge-count').forEach(badge => {
+          badge.textContent = saved.length;
+        });
+      });
+    }
+
     const tickerItems = [
       "Tube Magic - AI Tools For Growing on YouTube <b>$257.59/mo</b>",
       "AI Art VideoCourse PLRDownloads <b>$30.75</b>",
@@ -987,6 +1101,53 @@
 </script>
 
 <script>
+  function showNewsletterFeedback(form, isSuccess, message) {
+    const parent = form.parentNode;
+    const existing = parent.querySelector('.newsletter-feedback');
+    if (existing) existing.remove();
+
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'newsletter-feedback';
+    msgDiv.textContent = message;
+
+    // Glassmorphic inline styles
+    msgDiv.style.marginTop = '14px';
+    msgDiv.style.padding = '12px 16px';
+    msgDiv.style.borderRadius = '8px';
+    msgDiv.style.fontSize = '14px';
+    msgDiv.style.fontWeight = '500';
+    msgDiv.style.width = '100%';
+    msgDiv.style.boxSizing = 'border-box';
+    msgDiv.style.textAlign = 'left';
+    msgDiv.style.opacity = '0';
+    msgDiv.style.transition = 'opacity 0.3s ease';
+    msgDiv.style.backdropFilter = 'blur(8px)';
+    msgDiv.style.webkitBackdropFilter = 'blur(8px)';
+
+    if (isSuccess) {
+      msgDiv.style.background = 'rgba(16, 185, 129, 0.15)'; // Green glass
+      msgDiv.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+      msgDiv.style.color = '#34D399';
+    } else {
+      msgDiv.style.background = 'rgba(239, 68, 68, 0.15)'; // Red glass
+      msgDiv.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+      msgDiv.style.color = '#FCA5A5';
+    }
+
+    parent.appendChild(msgDiv);
+
+    setTimeout(() => {
+      msgDiv.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+      msgDiv.style.opacity = '0';
+      setTimeout(() => {
+        msgDiv.remove();
+      }, 300);
+    }, 5000);
+  }
+
   function submitNewsletter(event, form) {
     event.preventDefault();
     const emailInput = form.querySelector('input[name="email"]');
@@ -1004,12 +1165,11 @@
       _subject: "New Newsletter Signup - Smart Deal Hub"
     };
 
-    // Obfuscated FormSubmit URL endpoint formulation
-    const part1 = "https://formsubmit.co";
-    const part2 = "/ajax/infoj";
-    const part3 = ".j143";
-    const part4 = "@gmail.com";
-    const endpoint = part1 + part2 + part3 + part4;
+    const p1 = "https://formsubmit.co";
+    const p2 = "/ajax/infoj";
+    const p3 = ".j143";
+    const p4 = "@gmail.com";
+    const endpoint = p1 + p2 + p3 + p4;
 
     fetch(endpoint, {
       method: "POST",
@@ -1021,14 +1181,14 @@
     })
     .then(res => {
       if (res.ok) {
-        alert("Thank you for subscribing!");
+        showNewsletterFeedback(form, true, "Thank you for subscribing!");
         form.reset();
       } else {
         throw new Error("Failed to subscribe");
       }
     })
     .catch(err => {
-      alert("Subscription failed. Please try again later.");
+      showNewsletterFeedback(form, false, "Subscription failed. Please try again later.");
     })
     .finally(() => {
       submitBtn.disabled = false;

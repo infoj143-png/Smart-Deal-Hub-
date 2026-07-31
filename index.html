@@ -1362,6 +1362,41 @@
     }
   }
 </style>
+<!-- Google Analytics 4 (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XXXXXXXXXX');
+
+  // Outbound Affiliate Link Tracking
+  document.addEventListener('click', function(e) {
+    const anchor = e.target.closest('a');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href') || '';
+    const isExternal = href.startsWith('http') && !href.includes(window.location.hostname);
+    if (isExternal) {
+      let productName = '';
+      const card = anchor.closest('.deal-card');
+      if (card) {
+        const titleEl = card.querySelector('.deal-title a') || card.querySelector('.deal-title') || card.querySelector('.fc-title');
+        if (titleEl) productName = titleEl.textContent.trim();
+      } else {
+        const h1 = document.querySelector('h1');
+        if (h1) productName = h1.textContent.trim();
+      }
+      if (!productName) {
+        productName = anchor.textContent.trim() || 'Unknown Product';
+      }
+      gtag('event', 'affiliate_click', {
+        'product_name': productName,
+        'destination_url': href
+      });
+    }
+  });
+</script>
 </head>
 <body>
 
@@ -1461,7 +1496,7 @@
     </div>
     <div class="deal-grid" id="dealGrid">
       <!-- Fallback static content for premium SEO optimization (exactly 4 products) -->
-      <div class="deal-card" data-category="AI Tools">
+      <div class="deal-card" data-category="AI Tools" data-product-id="tube-magic">
         <div class="deal-img-wrapper">
           <a href="reviews/tube-magic.html">
             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=312&fit=crop&q=80" alt="Tube Magic - AI Tools For Growing on YouTube" width="500" height="312" loading="lazy">
@@ -1491,7 +1526,7 @@
         </div>
       </div>
 
-      <div class="deal-card" data-category="Courses">
+      <div class="deal-card" data-category="Courses" data-product-id="ai-art-videocourse">
         <div class="deal-img-wrapper">
           <a href="reviews/ai-art-videocourse.html">
             <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=312&fit=crop&q=80" alt="AI Art VideoCourse PLRDownloads" width="500" height="312" loading="lazy">
@@ -1521,7 +1556,7 @@
         </div>
       </div>
 
-      <div class="deal-card" data-category="Ebooks">
+      <div class="deal-card" data-category="Ebooks" data-product-id="ai-tools-everyday-life">
         <div class="deal-img-wrapper">
           <a href="reviews/ai-tools-everyday-life.html">
             <img src="https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=500&h=312&fit=crop&q=80" alt="AI Tools for Everyday Life" width="500" height="312" loading="lazy">
@@ -1551,7 +1586,7 @@
         </div>
       </div>
 
-      <div class="deal-card" data-category="Ebooks">
+      <div class="deal-card" data-category="Ebooks" data-product-id="50-ways-chatgpt">
         <div class="deal-img-wrapper">
           <a href="reviews/50-ways-chatgpt.html">
             <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=312&fit=crop&q=80" alt="50 Ways to Use ChatGPT in Business" width="500" height="312" loading="lazy">
@@ -1762,9 +1797,25 @@
 </footer>
 
 <script>
+  function getSavedProducts() {
+    try {
+      return JSON.parse(localStorage.getItem('savedProducts') || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function updateFavoritesBadge() {
+    const saved = getSavedProducts();
+    document.querySelectorAll('.badge-count').forEach(badge => {
+      badge.textContent = saved.length;
+    });
+  }
+
   // Strictly 4 premium products as defined in index.html
   const products = [
     {
+      id: "tube-magic",
       img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=312&fit=crop&q=80",
       badge: "Best Payout",
       category: "AI Tools",
@@ -1786,6 +1837,7 @@
       rel: "nofollow sponsored noopener"
     },
     {
+      id: "ai-art-videocourse",
       img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=312&fit=crop&q=80",
       badge: "Course",
       category: "Courses",
@@ -1807,6 +1859,7 @@
       rel: "nofollow sponsored noopener"
     },
     {
+      id: "ai-tools-everyday-life",
       img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=500&h=312&fit=crop&q=80",
       badge: "80% rated",
       category: "Ebooks",
@@ -1828,6 +1881,7 @@
       rel: "nofollow sponsored noopener"
     },
     {
+      id: "50-ways-chatgpt",
       img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=312&fit=crop&q=80",
       badge: "Popular",
       category: "Ebooks",
@@ -1858,14 +1912,19 @@
   function renderGrid(data) {
     const grid = document.getElementById("dealGrid");
     if (!grid) return;
-    grid.innerHTML = data.map(d => `
-      <div class="deal-card">
+    const savedIds = getSavedProducts();
+    grid.innerHTML = data.map(d => {
+      const isSaved = savedIds.includes(d.id);
+      const heartChar = isSaved ? '♥' : '♡';
+      const activeClass = isSaved ? ' active' : '';
+      return `
+      <div class="deal-card" data-category="${d.category}" data-product-id="${d.id}">
         <div class="deal-img-wrapper">
           <a href="${d.reviewLink}">
             <img src="${d.img}" alt="${d.title}" width="500" height="312" loading="lazy">
           </a>
           <span class="deal-badge">${d.badge}</span>
-          <button class="save-icon" aria-label="Save product">♡</button>
+          <button class="save-icon${activeClass}" aria-label="Save product">${heartChar}</button>
           <span class="instant-tag">⚡ ${d.fresh}</span>
         </div>
         <div class="deal-body">
@@ -1886,7 +1945,7 @@
           </div>
         </div>
       </div>
-    `).join("");
+    `; }).join("");
   }
 
   // Active Interactive Filtering Logic
@@ -1938,8 +1997,37 @@
     });
   }
 
+  // Wishlist Save Handler Click Delegation
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.save-icon');
+    if (!btn) return;
+
+    e.preventDefault();
+    const card = btn.closest('.deal-card');
+    if (!card) return;
+
+    const productId = card.getAttribute('data-product-id');
+    if (!productId) return;
+
+    let saved = getSavedProducts();
+    const idx = saved.indexOf(productId);
+    if (idx > -1) {
+      saved.splice(idx, 1);
+      btn.classList.remove('active');
+      btn.textContent = '♡';
+    } else {
+      saved.push(productId);
+      btn.classList.add('active');
+      btn.textContent = '♥';
+    }
+    localStorage.setItem('savedProducts', JSON.stringify(saved));
+    updateFavoritesBadge();
+  });
+
   // Initial Render on page load
   window.addEventListener("DOMContentLoaded", () => {
+    updateFavoritesBadge();
+
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get('search');
 
@@ -1980,6 +2068,53 @@
 </script>
 
 <script>
+  function showNewsletterFeedback(form, isSuccess, message) {
+    const parent = form.parentNode;
+    const existing = parent.querySelector('.newsletter-feedback');
+    if (existing) existing.remove();
+
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'newsletter-feedback';
+    msgDiv.textContent = message;
+
+    // Glassmorphic inline styles
+    msgDiv.style.marginTop = '14px';
+    msgDiv.style.padding = '12px 16px';
+    msgDiv.style.borderRadius = '8px';
+    msgDiv.style.fontSize = '14px';
+    msgDiv.style.fontWeight = '500';
+    msgDiv.style.width = '100%';
+    msgDiv.style.boxSizing = 'border-box';
+    msgDiv.style.textAlign = 'left';
+    msgDiv.style.opacity = '0';
+    msgDiv.style.transition = 'opacity 0.3s ease';
+    msgDiv.style.backdropFilter = 'blur(8px)';
+    msgDiv.style.webkitBackdropFilter = 'blur(8px)';
+
+    if (isSuccess) {
+      msgDiv.style.background = 'rgba(16, 185, 129, 0.15)'; // Green glass
+      msgDiv.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+      msgDiv.style.color = '#34D399';
+    } else {
+      msgDiv.style.background = 'rgba(239, 68, 68, 0.15)'; // Red glass
+      msgDiv.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+      msgDiv.style.color = '#FCA5A5';
+    }
+
+    parent.appendChild(msgDiv);
+
+    setTimeout(() => {
+      msgDiv.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+      msgDiv.style.opacity = '0';
+      setTimeout(() => {
+        msgDiv.remove();
+      }, 300);
+    }, 5000);
+  }
+
   function submitNewsletter(event, form) {
     event.preventDefault();
     const emailInput = form.querySelector('input[name="email"]');
@@ -2013,14 +2148,14 @@
     })
     .then(res => {
       if (res.ok) {
-        alert("Thank you for subscribing!");
+        showNewsletterFeedback(form, true, "Thank you for subscribing!");
         form.reset();
       } else {
         throw new Error("Failed to subscribe");
       }
     })
     .catch(err => {
-      alert("Subscription failed. Please try again later.");
+      showNewsletterFeedback(form, false, "Subscription failed. Please try again later.");
     })
     .finally(() => {
       submitBtn.disabled = false;

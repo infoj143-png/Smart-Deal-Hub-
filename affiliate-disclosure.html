@@ -610,6 +610,41 @@
     }
   }
 </style>
+<!-- Google Analytics 4 (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XXXXXXXXXX');
+
+  // Outbound Affiliate Link Tracking
+  document.addEventListener('click', function(e) {
+    const anchor = e.target.closest('a');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href') || '';
+    const isExternal = href.startsWith('http') && !href.includes(window.location.hostname);
+    if (isExternal) {
+      let productName = '';
+      const card = anchor.closest('.deal-card');
+      if (card) {
+        const titleEl = card.querySelector('.deal-title a') || card.querySelector('.deal-title') || card.querySelector('.fc-title');
+        if (titleEl) productName = titleEl.textContent.trim();
+      } else {
+        const h1 = document.querySelector('h1');
+        if (h1) productName = h1.textContent.trim();
+      }
+      if (!productName) {
+        productName = anchor.textContent.trim() || 'Unknown Product';
+      }
+      gtag('event', 'affiliate_click', {
+        'product_name': productName,
+        'destination_url': href
+      });
+    }
+  });
+</script>
 </head>
 <body>
 
@@ -764,6 +799,14 @@
   }
 
   window.addEventListener("DOMContentLoaded", () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('savedProducts') || '[]');
+      document.querySelectorAll('.badge-count').forEach(badge => {
+        badge.textContent = saved.length;
+      });
+    } catch (e) {
+      console.error("Error updating favorites badge:", e);
+    }
     const tickerItems = [
       "Tube Magic - AI Tools For Growing on YouTube <b>$257.59/mo</b>",
       "AI Art VideoCourse PLRDownloads <b>$30.75</b>",
@@ -778,6 +821,53 @@
 </script>
 
 <script>
+  function showNewsletterFeedback(form, isSuccess, message) {
+    const parent = form.parentNode;
+    const existing = parent.querySelector('.newsletter-feedback');
+    if (existing) existing.remove();
+
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'newsletter-feedback';
+    msgDiv.textContent = message;
+
+    // Glassmorphic inline styles
+    msgDiv.style.marginTop = '14px';
+    msgDiv.style.padding = '12px 16px';
+    msgDiv.style.borderRadius = '8px';
+    msgDiv.style.fontSize = '14px';
+    msgDiv.style.fontWeight = '500';
+    msgDiv.style.width = '100%';
+    msgDiv.style.boxSizing = 'border-box';
+    msgDiv.style.textAlign = 'left';
+    msgDiv.style.opacity = '0';
+    msgDiv.style.transition = 'opacity 0.3s ease';
+    msgDiv.style.backdropFilter = 'blur(8px)';
+    msgDiv.style.webkitBackdropFilter = 'blur(8px)';
+
+    if (isSuccess) {
+      msgDiv.style.background = 'rgba(16, 185, 129, 0.15)'; // Green glass
+      msgDiv.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+      msgDiv.style.color = '#34D399';
+    } else {
+      msgDiv.style.background = 'rgba(239, 68, 68, 0.15)'; // Red glass
+      msgDiv.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+      msgDiv.style.color = '#FCA5A5';
+    }
+
+    parent.appendChild(msgDiv);
+
+    setTimeout(() => {
+      msgDiv.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+      msgDiv.style.opacity = '0';
+      setTimeout(() => {
+        msgDiv.remove();
+      }, 300);
+    }, 5000);
+  }
+
   function submitNewsletter(event, form) {
     event.preventDefault();
     const emailInput = form.querySelector('input[name="email"]');
@@ -811,14 +901,14 @@
     })
     .then(res => {
       if (res.ok) {
-        alert("Thank you for subscribing!");
+        showNewsletterFeedback(form, true, "Thank you for subscribing!");
         form.reset();
       } else {
         throw new Error("Failed to subscribe");
       }
     })
     .catch(err => {
-      alert("Subscription failed. Please try again later.");
+      showNewsletterFeedback(form, false, "Subscription failed. Please try again later.");
     })
     .finally(() => {
       submitBtn.disabled = false;
