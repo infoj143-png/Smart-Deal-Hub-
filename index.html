@@ -201,6 +201,43 @@
         "worstRating": "1"
       }
     }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "200 AI Prompts for Business Owners & Content Creators",
+    "image": "https://smart-deal-hub-phi.vercel.app/assets/images/ebooks/200-ai-prompts-landscape.jpg",
+    "description": "A comprehensive collection of 200 copy-paste AI prompts to supercharge your business strategy, marketing copy, content design, and automation workflows. Premium commercial-quality PDF guide.",
+    "sku": "200-ai-prompts-001",
+    "offers": {
+      "@type": "Offer",
+      "url": "https://smart-deal-hub-phi.vercel.app/assets/ebooks/200-ai-prompts.pdf",
+      "price": "19.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "125"
+    },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Organization",
+        "name": "Smart Deal Hub"
+      },
+      "datePublished": "2026-02-15",
+      "reviewBody": "At $19.99, the premium guide delivers incredible value through incredibly detailed copy-paste business prompt blueprints and pro tips.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
   }
 ]
 </script>
@@ -1827,7 +1864,7 @@
     if (cat === 'All') {
       const btn = document.getElementById('btn-all');
       if (btn) btn.classList.add('active');
-      renderGrid(products, "dealGrid");
+      renderGrid(products.filter(p => p.featured), "dealGrid");
     } else if (cat === 'AI Tools') {
       const btn = document.getElementById('btn-ai');
       if (btn) btn.classList.add('active');
@@ -1864,7 +1901,7 @@
     searchInput.addEventListener("input", (e) => {
       const q = e.target.value.toLowerCase().trim();
       if (!q) {
-        renderGrid(products, "dealGrid");
+        renderGrid(products.filter(p => p.featured), "dealGrid");
         return;
       }
       const filtered = masterProducts.filter(p =>
@@ -1998,7 +2035,8 @@
           fresh: item.fresh || 'Instant Access',
           link: item.buyLink,
           reviewLink: item.productPage,
-          rel: item.rel || 'noopener'
+          rel: item.rel || 'noopener',
+          featured: item.featured !== undefined ? item.featured : false
         }));
 
         masterProducts = mapped;
@@ -2034,7 +2072,7 @@
             localStorage.removeItem('selectedCategory');
             filterCategory(savedCat);
           } else {
-            renderGrid(products, "dealGrid");
+            renderGrid(products.filter(p => p.featured), "dealGrid");
           }
         }
 
