@@ -96,6 +96,30 @@
     "rel": "nofollow sponsored noopener"
   },
   {
+    "id": "200-ai-prompts",
+    "title": "200 AI Prompts for Business Owners & Content Creators",
+    "category": "Ebooks",
+    "price": "19.99",
+    "oldPrice": "29.99",
+    "description": "A comprehensive collection of 200 copy-paste AI prompts to supercharge your business strategy, marketing copy, content design, and automation workflows. Premium commercial-quality PDF guide.",
+    "image": "assets/images/ebooks/200-ai-prompts-landscape.jpg",
+    "productPage": "reviews/200-ai-prompts.html",
+    "buyLink": "assets/ebooks/200-ai-prompts.pdf",
+    "featured": false,
+    "badge": "Premium Guide",
+    "format": "E-books",
+    "features": [
+      "200 meticulously tested AI prompts",
+      "Covers marketing, copywriting, and SEO",
+      "Actionable pro tips & simulated example outputs"
+    ],
+    "rating": 4.9,
+    "reviews": 125,
+    "period": " one-time",
+    "fresh": "Instant download",
+    "rel": "noopener"
+  },
+  {
     "id": "luxury-nikah-invitation",
     "title": "Luxury Nikah Invitation",
     "category": "Nikah",
