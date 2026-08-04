@@ -78,6 +78,11 @@ def run_playwright_tests():
         desktop_page.goto("http://localhost:8000/index.html")
         desktop_page.wait_for_timeout(1000)
 
+        # Scroll to bottom to trigger lazy loading of all images
+        desktop_page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        desktop_page.wait_for_timeout(1500)
+        desktop_page.evaluate("window.scrollTo(0, 0)")
+
         # Verify Product cards count (exactly 4 products)
         product_cards = desktop_page.locator(".deal-card")
         card_count = product_cards.count()

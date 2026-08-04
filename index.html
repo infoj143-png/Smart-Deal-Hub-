@@ -1466,10 +1466,10 @@
         <div><b>100%</b><span>Instant Download</span></div>
       </div>
     </div>
-    <div class="hero-visual">
+    <div class="hero-visual" id="heroVisual">
       <span class="featured-badge">Featured Listings</span>
       <div class="featured-card">
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=100&fit=crop&q=80" alt="Tube Magic AI tool" width="60" height="60" loading="lazy">
+        <img src="assets/images/tube-magic.jpg" alt="Tube Magic AI tool" width="60" height="60" loading="lazy">
         <div style="flex:1">
           <div class="fc-title">Tube Magic - AI Tools For Growing on YouTube</div>
           <div class="fc-meta">Software · Monthly</div>
@@ -1477,7 +1477,7 @@
         <span class="price-now-lg">$257.59/mo</span>
       </div>
       <div class="featured-card">
-        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=100&h=100&fit=crop&q=80" alt="50 Ways to Use ChatGPT" width="60" height="60" loading="lazy">
+        <img src="assets/images/ebooks/50-ways-chatgpt.jpg" alt="50 Ways to Use ChatGPT" width="60" height="60" loading="lazy">
         <div style="flex:1">
           <div class="fc-title">50 Ways to Use ChatGPT in Business</div>
           <div class="fc-meta">E-books · One-Time</div>
@@ -1518,6 +1518,18 @@
         <p style="font-size: 15px; color: var(--ink-soft); margin-top: 6px;">Exquisite, fully editable premium invites for Nikah, Mehndi, Barat, Walima, and traditional floral designs.</p>
       </div>
       <button onclick="revealAllWeddingInvitations()" class="see-all" style="font-size: 15px; font-weight: 700; color: var(--purple); cursor: pointer;">View All Templates ↓</button>
+    </div>
+
+    <!-- Wedding Subcategory Filter Pills -->
+    <div class="filters" id="weddingFilters" style="margin-top: 16px; margin-bottom: 24px;">
+      <button class="pill active" id="wbtn-all" onclick="filterWeddingSubcategory('All')">All Wedding</button>
+      <button class="pill" id="wbtn-nikah" onclick="filterWeddingSubcategory('Nikah')">Nikah</button>
+      <button class="pill" id="wbtn-mehndi" onclick="filterWeddingSubcategory('Mehndi')">Mehndi</button>
+      <button class="pill" id="wbtn-barat" onclick="filterWeddingSubcategory('Barat')">Barat</button>
+      <button class="pill" id="wbtn-walima" onclick="filterWeddingSubcategory('Walima')">Walima</button>
+      <button class="pill" id="wbtn-modern" onclick="filterWeddingSubcategory('Modern')">Modern</button>
+      <button class="pill" id="wbtn-floral" onclick="filterWeddingSubcategory('Floral')">Floral</button>
+      <button class="pill" id="wbtn-luxury" onclick="filterWeddingSubcategory('Luxury')">Luxury</button>
     </div>
 
     <!-- Wedding Product Grid -->
@@ -1712,6 +1724,11 @@
     }
   }
 
+  let products = [];
+  let weddingInvitations = [];
+  let masterProducts = [];
+  const defaultPlaceholder = 'assets/images/placeholders/default.jpg';
+
   function updateFavoritesBadge() {
     const saved = getSavedProducts();
     document.querySelectorAll('.badge-count').forEach(badge => {
@@ -1719,284 +1736,27 @@
     });
   }
 
-  // Strictly 4 premium products as defined in index.html
-  const products = [
-    {
-      id: "tube-magic",
-      img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=312&fit=crop&q=80",
-      badge: "Best Payout",
-      category: "AI Tools",
-      format: "Software",
-      title: "Tube Magic - AI Tools For Growing on YouTube",
-      desc: "The ultimate AI assistant for YouTube creators. Find trending keywords, generate engaging titles, and optimize your channel growth with data-driven AI models.",
-      features: [
-        "AI competitor analysis & tracking",
-        "Instant viral title suggestions",
-        "Automated description & tag generator"
-      ],
-      rating: 4.8,
-      reviews: 340,
-      now: "257.59",
-      period: "/month",
-      fresh: "Instant access",
-      link: "https://tubemagic.com/ds#aff=Junaid143",
-      reviewLink: "reviews/tube-magic.html",
-      rel: "nofollow sponsored noopener"
-    },
-    {
-      id: "ai-art-videocourse",
-      img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=312&fit=crop&q=80",
-      badge: "Course",
-      category: "Courses",
-      format: "Video Courses",
-      title: "AI Art VideoCourse PLRDownloads",
-      desc: "Learn how to build high-quality online courses and curriculum using advanced AI automation tools. Complete with video walkthroughs, lesson templates, and private member access.",
-      features: [
-        "15+ step-by-step video modules",
-        "Custom ChatGPT lesson templates",
-        "Lifetime updates and community Q&A"
-      ],
-      rating: 4.6,
-      reviews: 158,
-      now: "30.75",
-      period: " one-time",
-      fresh: "Instant access",
-      link: "https://heikoboos.com/ai-art-videocourse-plr/#aff=Junaid143",
-      reviewLink: "reviews/ai-art-videocourse.html",
-      rel: "nofollow sponsored noopener"
-    },
-    {
-      id: "ai-tools-everyday-life",
-      img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=500&h=312&fit=crop&q=80",
-      badge: "80% rated",
-      category: "Ebooks",
-      format: "E-books",
-      title: "AI Tools for Everyday Life",
-      desc: "Ditch the complexity. This comprehensive digital guide walks you through simple, highly practical AI tools to streamline your daily tasks, planning, and personal organization.",
-      features: [
-        "Over 100 practical tool reviews",
-        "Beginner-friendly cheat sheets",
-        "Direct setup instructions & workflow guides"
-      ],
-      rating: 4.7,
-      reviews: 210,
-      now: "17.99",
-      period: " one-time",
-      fresh: "Instant download",
-      link: "https://www.checkout-ds24.com/redir/635402/Junaid143/",
-      reviewLink: "reviews/ai-tools-everyday-life.html",
-      rel: "nofollow sponsored noopener"
-    },
-    {
-      id: "50-ways-chatgpt",
-      img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=312&fit=crop&q=80",
-      badge: "Popular",
-      category: "Ebooks",
-      format: "E-books",
-      title: "50 Ways to Use ChatGPT in Business",
-      desc: "A highly tactical collection of copy-paste ChatGPT prompts and workflow blueprints designed to automate repetitive business tasks, copywriting, and basic reporting.",
-      features: [
-        "50 plug-and-play prompt templates",
-        "Covers sales, marketing, and support",
-        "Actionable small business case studies"
-      ],
-      rating: 4.5,
-      reviews: 412,
-      now: "9.97",
-      period: " one-time",
-      fresh: "Instant download",
-      link: "https://heikoboos.com/top-50-ways-to-use-chatgpt#aff=Junaid143",
-      reviewLink: "reviews/50-ways-chatgpt.html",
-      rel: "nofollow sponsored noopener"
-    }
-  ];
-
-  // Beautiful new Wedding Invitation Collection
-  const weddingInvitations = [
-    {
-      id: "luxury-nikah-invitation",
-      img: "https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?w=500&h=312&fit=crop&q=80",
-      badge: "Regal Gold",
-      category: "Wedding Invitations",
-      format: "Editable Template",
-      title: "Luxury Nikah Invitation",
-      desc: "An exquisitely crafted Islamic wedding invitation featuring elegant Arabic calligraphy, regal gold damask patterns, and premium traditional layouts. Designed specifically for elegant Nikah ceremonies.",
-      features: [
-        "Premium royal gold Islamic art calligraphy layout",
-        "Fully editable text, colors, fonts and background elements",
-        "Sized at standard 5x7 inches ready for print or mobile share"
-      ],
-      rating: 4.9,
-      reviews: 184,
-      now: "14.99",
-      period: " one-time",
-      fresh: "Instant download",
-      link: "reviews/luxury-nikah-invitation.html",
-      reviewLink: "reviews/luxury-nikah-invitation.html",
-      rel: "noopener"
-    },
-    {
-      id: "premium-mehndi-invitation",
-      img: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=500&h=312&fit=crop&q=80",
-      badge: "Vibrant Fiesta",
-      category: "Wedding Invitations",
-      format: "Editable Template",
-      title: "Premium Mehndi Invitation",
-      desc: "A vibrant, colorful invitation bursting with festive energy, featuring marigold motifs, traditional dhol designs, and beautiful henna patterns. Perfect for a grand Mehndi celebration.",
-      features: [
-        "Vivid traditional colors (mustard, magenta, teal accents)",
-        "High fidelity vector mandalas and decorative borders",
-        "Instant access with print-ready 300 DPI high resolution"
-      ],
-      rating: 4.8,
-      reviews: 142,
-      now: "12.99",
-      period: " one-time",
-      fresh: "Instant download",
-      link: "reviews/premium-mehndi-invitation.html",
-      reviewLink: "reviews/premium-mehndi-invitation.html",
-      rel: "noopener"
-    },
-    {
-      id: "royal-barat-invitation",
-      img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=312&fit=crop&q=80",
-      badge: "Heritage Royal",
-      category: "Wedding Invitations",
-      format: "Editable Template",
-      title: "Royal Barat Invitation",
-      desc: "Evoke grand royal heritage with a Barat invitation boasting intricate palace arch designs, majestic elephant motifs, and deep crimson and gold themes fit for royalty.",
-      features: [
-        "Opulent red and gold aesthetic representing regal tradition",
-        "Multi-page details card template included (Main, Venue, RSVP)",
-        "Easily customizable via smartphone or desktop browser"
-      ],
-      rating: 4.9,
-      reviews: 210,
-      now: "15.99",
-      period: " one-time",
-      fresh: "Instant download",
-      link: "reviews/royal-barat-invitation.html",
-      reviewLink: "reviews/royal-barat-invitation.html",
-      rel: "noopener"
-    },
-    {
-      id: "elegant-walima-invitation",
-      img: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?w=500&h=312&fit=crop&q=80",
-      badge: "Modern Pastel",
-      category: "Wedding Invitations",
-      format: "Editable Template",
-      title: "Elegant Walima Invitation",
-      desc: "A sophisticated Walima template using modern pastel colors, minimalist layouts, silver embossing vibes, and clean modern layout styles. Highly professional and refined.",
-      features: [
-        "Chic modern pastel colors with silver foil accent style",
-        "Clean contemporary typesetting designed by professional artists",
-        "Instant PDF download with clickable interactive maps integration"
-      ],
-      rating: 4.7,
-      reviews: 118,
-      now: "13.99",
-      period: " one-time",
-      fresh: "Instant download",
-      link: "reviews/elegant-walima-invitation.html",
-      reviewLink: "reviews/elegant-walima-invitation.html",
-      rel: "noopener"
-    },
-    {
-      id: "floral-wedding-invitation",
-      img: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=500&h=312&fit=crop&q=80",
-      badge: "Watercolor Floral",
-      category: "Wedding Invitations",
-      format: "Editable Template",
-      title: "Floral Wedding Invitation",
-      desc: "A stunning, botanically inspired wedding template decorated with delicate watercolor florals, lush green foliage, and warm elegant calligraphy script styles.",
-      features: [
-        "Exquisite watercolor blossom illustrations and greenery",
-        "Highly versatile design suitable for all wedding seasons",
-        "Includes matching RSVP and thank you cards inside the bundle"
-      ],
-      rating: 4.8,
-      reviews: 230,
-      now: "11.99",
-      period: " one-time",
-      fresh: "Instant download",
-      link: "reviews/floral-wedding-invitation.html",
-      reviewLink: "reviews/floral-wedding-invitation.html",
-      rel: "noopener"
-    },
-    {
-      id: "minimal-wedding-invitation",
-      img: "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=500&h=312&fit=crop&q=80",
-      badge: "Ultra Clean",
-      category: "Wedding Invitations",
-      format: "Editable Template",
-      title: "Minimal Wedding Invitation",
-      desc: "Embrace simplicity and modern refinement. This card uses spacious layouts, striking serif fonts, and an ultra-clean design format that is both timeless and sophisticated.",
-      features: [
-        "Sophisticated monochromatic minimalism style",
-        "Maximum readability with contemporary high-end serif typography",
-        "Eco-friendly layout optimized for paper-saving prints"
-      ],
-      rating: 4.6,
-      reviews: 165,
-      now: "9.99",
-      period: " one-time",
-      fresh: "Instant download",
-      link: "reviews/minimal-wedding-invitation.html",
-      reviewLink: "reviews/minimal-wedding-invitation.html",
-      rel: "noopener"
-    },
-    {
-      id: "modern-wedding-invitation",
-      img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&h=312&fit=crop&q=80",
-      badge: "Geometric Frame",
-      category: "Wedding Invitations",
-      format: "Editable Template",
-      title: "Modern Wedding Invitation",
-      desc: "A trendy, modern wedding design featuring clean lines, stylish geometric frames, a contemporary aesthetic, and a sleek layout. Perfect for the modern couple.",
-      features: [
-        "Sleek geometric frames and contemporary composition",
-        "Optimized both for physical printing and digital invitation messaging",
-        "Drag-and-drop customization in your favorite web editor"
-      ],
-      rating: 4.8,
-      reviews: 195,
-      now: "10.99",
-      period: " one-time",
-      fresh: "Instant download",
-      link: "reviews/modern-wedding-invitation.html",
-      reviewLink: "reviews/modern-wedding-invitation.html",
-      rel: "noopener"
-    },
-    {
-      id: "gold-luxury-invitation",
-      img: "https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?w=500&h=312&fit=crop&q=80",
-      badge: "Golden Marble",
-      category: "Wedding Invitations",
-      format: "Editable Template",
-      title: "Gold Luxury Invitation",
-      desc: "The pinnacle of high-end wedding invitations. Features deep navy or royal black background themes decorated with golden filigree, marble textures, and spectacular luxury scripting.",
-      features: [
-        "Luxurious dark and golden contrast for the ultimate high-end feel",
-        "Premium foil effect background simulation built directly in",
-        "Full matching suite including RSVP, Save the Date, and Menu templates"
-      ],
-      rating: 4.9,
-      reviews: 245,
-      now: "16.99",
-      period: " one-time",
-      fresh: "Instant download",
-      link: "reviews/gold-luxury-invitation.html",
-      reviewLink: "reviews/gold-luxury-invitation.html",
-      rel: "noopener"
-    }
-  ];
-
-  // Combined master array for search/filter operations (Wedding template counts as a valid category)
-  const masterProducts = [...products, ...weddingInvitations];
-
   function starString(rating) {
     const full = Math.round(rating);
     return "★".repeat(full) + "☆".repeat(5 - full);
+  }
+
+  // Dynamic SEO Generator
+  function updateDynamicSEO(categoryName) {
+    if (categoryName && categoryName !== 'All') {
+      document.title = `Best ${categoryName} in 2026 — Verified & Tested | Smart Deal Hub`;
+    } else {
+      document.title = "Smart Deal Hub — Curated AI Tools, Courses, Wedding Invitations & Digital Products";
+    }
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      if (categoryName && categoryName !== 'All') {
+        metaDesc.setAttribute("content", `Stop guessing. We test, review, and rank the best ${categoryName} templates and software so you can find exactly what works. Read honest, detailed picks.`);
+      } else {
+        metaDesc.setAttribute("content", "Stop guessing. We test and review the web's best AI software, wedding invitation templates, video courses, and digital ebooks so you can skip the trial and error. Read honest, detailed picks.");
+      }
+    }
   }
 
   function renderGrid(data, gridId = "dealGrid", isWeddingGrid = false) {
@@ -2020,11 +1780,14 @@
 
       const cardClass = isWedding ? "wedding-card" : "deal-card";
 
+      // Automatically generate highly descriptive alt tags for image SEO
+      const autoAlt = `${d.title} - Curated by Smart Deal Hub`;
+
       return `
       <div class="${cardClass}" data-category="${d.category}" data-product-id="${d.id}">
         <div class="deal-img-wrapper">
           <a href="${d.reviewLink}">
-            <img src="${d.img}" alt="${d.title}" width="500" height="312" loading="lazy">
+            <img src="${d.img}" alt="${autoAlt}" width="500" height="312" loading="lazy" onerror="this.onerror=null; this.src='${defaultPlaceholder}';">
           </a>
           <span class="deal-badge">${d.badge}</span>
           <button class="save-icon${activeClass}" aria-label="Save product">${heartChar}</button>
@@ -2056,6 +1819,11 @@
     const pills = document.querySelectorAll('.filters .pill');
     pills.forEach(p => p.classList.remove('active'));
 
+    const weddingSubcategories = ["Nikah", "Mehndi", "Barat", "Walima", "Modern", "Floral", "Luxury"];
+
+    // Automatically update dynamic SEO tags
+    updateDynamicSEO(cat);
+
     if (cat === 'All') {
       const btn = document.getElementById('btn-all');
       if (btn) btn.classList.add('active');
@@ -2080,6 +1848,9 @@
       if (btn) btn.classList.add('active');
       const filtered = masterProducts.filter(p => p.category === 'Wedding Invitations');
       renderGrid(filtered, "dealGrid");
+    } else if (weddingSubcategories.includes(cat)) {
+      const filtered = masterProducts.filter(p => p.subcategory === cat);
+      renderGrid(filtered, "dealGrid");
     }
   }
 
@@ -2100,7 +1871,8 @@
         p.title.toLowerCase().includes(q) ||
         p.desc.toLowerCase().includes(q) ||
         p.format.toLowerCase().includes(q) ||
-        p.category.toLowerCase().includes(q)
+        p.category.toLowerCase().includes(q) ||
+        (p.subcategory && p.subcategory.toLowerCase().includes(q))
       );
       renderGrid(filtered, "dealGrid");
     });
@@ -2135,12 +1907,31 @@
 
   // Reveal All Wedding Templates Handler
   let isWeddingAllRevealed = false;
+  let activeWeddingSubcategory = 'All';
+
+  function filterWeddingSubcategory(subcat) {
+    activeWeddingSubcategory = subcat;
+    const pills = document.querySelectorAll('#weddingFilters .pill');
+    pills.forEach(p => p.classList.remove('active'));
+
+    const btnId = 'wbtn-' + subcat.toLowerCase();
+    const btn = document.getElementById(btnId);
+    if (btn) btn.classList.add('active');
+
+    renderWeddingSection();
+  }
+
   function renderWeddingSection() {
+    let filtered = weddingInvitations;
+    if (activeWeddingSubcategory !== 'All') {
+      filtered = weddingInvitations.filter(p => p.subcategory === activeWeddingSubcategory);
+    }
+
     if (isWeddingAllRevealed) {
-      renderGrid(weddingInvitations, "weddingGrid", true);
+      renderGrid(filtered, "weddingGrid", true);
     } else {
       // First 4 templates
-      renderGrid(weddingInvitations.slice(0, 4), "weddingGrid", true);
+      renderGrid(filtered.slice(0, 4), "weddingGrid", true);
     }
   }
 
@@ -2153,53 +1944,120 @@
     }
   }
 
-  // Initial Render on page load
+  // Render hero visual featured list dynamically
+  function renderHeroFeatured() {
+    const container = document.getElementById("heroVisual");
+    if (!container) return;
+
+    // Grab first 2 featured products from products array
+    const featured = products.slice(0, 2);
+    if (featured.length < 2) return;
+
+    container.innerHTML = `
+      <span class="featured-badge">Featured Listings</span>
+      ${featured.map(p => {
+        const periodType = p.period && p.period.includes('/month') ? 'Monthly' : 'One-Time';
+        const periodSuffix = p.period && p.period.includes('/month') ? '/mo' : '';
+        return `
+          <div class="featured-card">
+            <img src="${p.img}" alt="${p.title}" width="60" height="60" loading="lazy" onerror="this.onerror=null; this.src='${defaultPlaceholder}';">
+            <div style="flex:1">
+              <div class="fc-title">${p.title}</div>
+              <div class="fc-meta">${p.format} · ${periodType}</div>
+            </div>
+            <span class="price-now-lg">$${p.now}${periodSuffix}</span>
+          </div>
+        `;
+      }).join("")}
+    `;
+  }
+
+  // Initial Dynamic Loading & Render on page load
   window.addEventListener("DOMContentLoaded", () => {
     updateFavoritesBadge();
 
-    // Render wedding invitation grid initial items
-    renderWeddingSection();
+    fetch('products.json')
+      .then(res => res.json())
+      .then(data => {
+        const weddingCats = ["Nikah", "Mehndi", "Barat", "Walima", "Modern", "Floral", "Luxury", "Wedding Invitations"];
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchQuery = urlParams.get('search');
+        const mapped = data.map(item => ({
+          id: item.id,
+          img: item.image || defaultPlaceholder,
+          badge: item.badge || 'New',
+          category: weddingCats.includes(item.category) ? "Wedding Invitations" : item.category,
+          subcategory: item.category, // store specific subcategory
+          format: item.format || 'Digital Product',
+          title: item.title || 'Untitled',
+          desc: item.description || '',
+          features: item.features || [],
+          rating: item.rating || 5.0,
+          reviews: item.reviews || 0,
+          now: item.price,
+          period: item.period || ' one-time',
+          fresh: item.fresh || 'Instant Access',
+          link: item.buyLink,
+          reviewLink: item.productPage,
+          rel: item.rel || 'noopener'
+        }));
 
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase().trim();
-      const searchInput = document.getElementById("productSearch");
-      if (searchInput) {
-        searchInput.value = searchQuery;
-      }
-      const filtered = masterProducts.filter(p =>
-        p.title.toLowerCase().includes(q) ||
-        p.desc.toLowerCase().includes(q) ||
-        p.format.toLowerCase().includes(q) ||
-        p.category.toLowerCase().includes(q)
-      );
-      renderGrid(filtered, "dealGrid");
-    } else {
-      const savedCat = localStorage.getItem('selectedCategory');
-      if (savedCat) {
-        localStorage.removeItem('selectedCategory');
-        filterCategory(savedCat);
-      } else {
-        renderGrid(products, "dealGrid");
-      }
-    }
+        masterProducts = mapped;
+        products = mapped.filter(p => p.category !== "Wedding Invitations");
+        weddingInvitations = mapped.filter(p => p.category === "Wedding Invitations");
 
-    const tickerItems = [
-      "Tube Magic - AI Tools For Growing on YouTube <b>$257.59/mo</b>",
-      "AI Art VideoCourse PLRDownloads <b>$30.75</b>",
-      "AI Tools for Everyday Life <b>$17.99</b>",
-      "50 Ways to Use ChatGPT in Business <b>$9.97</b>",
-      "Luxury Nikah Invitation Template <b>$14.99</b>",
-      "Premium Mehndi Invitation Template <b>$12.99</b>",
-      "Royal Barat Invitation Template <b>$15.99</b>",
-      "Elegant Walima Invitation Template <b>$13.99</b>"
-    ];
-    const track = document.getElementById("tickerTrack");
-    if (track) {
-      track.innerHTML = [...tickerItems, ...tickerItems, ...tickerItems].map(t => `<span>${t}</span>`).join("");
-    }
+        // Render dynamic featured listings in Hero
+        renderHeroFeatured();
+
+        // Render wedding invitation grid initial items
+        renderWeddingSection();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase().trim();
+          const searchInput = document.getElementById("productSearch");
+          if (searchInput) {
+            searchInput.value = searchQuery;
+          }
+          const filtered = masterProducts.filter(p =>
+            p.title.toLowerCase().includes(q) ||
+            p.desc.toLowerCase().includes(q) ||
+            p.format.toLowerCase().includes(q) ||
+            p.category.toLowerCase().includes(q) ||
+            (p.subcategory && p.subcategory.toLowerCase().includes(q))
+          );
+          renderGrid(filtered, "dealGrid");
+        } else {
+          const savedCat = localStorage.getItem('selectedCategory');
+          if (savedCat) {
+            localStorage.removeItem('selectedCategory');
+            filterCategory(savedCat);
+          } else {
+            renderGrid(products, "dealGrid");
+          }
+        }
+
+        // Generate dynamic live ticker items
+        const tickerItems = masterProducts.map(p => {
+          const suffix = p.period && p.period.includes('/month') ? '/mo' : '';
+          const templateText = p.category === "Wedding Invitations" ? " Template" : "";
+          return `${p.title}${templateText} <b>$${p.now}${suffix}</b>`;
+        });
+
+        const track = document.getElementById("tickerTrack");
+        if (track) {
+          track.innerHTML = [...tickerItems, ...tickerItems, ...tickerItems].map(t => `<span>${t}</span>`).join("");
+        }
+      })
+      .catch(err => {
+        console.error("Error loading products.json:", err);
+        // Display placeholder/fallback content if fetch fails
+        const dealGrid = document.getElementById("dealGrid");
+        if (dealGrid) {
+          dealGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--ink-soft); font-weight: 500;">Failed to load products. Please refresh the page.</p>`;
+        }
+      });
   });
 </script>
 
